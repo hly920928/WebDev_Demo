@@ -1,0 +1,75 @@
+<% include partials/camp_header.ejs%>
+<script src="/scripts/campInfo_detail.js"></script>
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+ <p class="lead">CampInfo</p>
+ <div class="list-group">
+ <li class="list-group-item active">Info 1</li>
+ <li class="list-group-item">Info 2</li>
+ <li class="list-group-item">Info 3</li>
+ </div>
+ </div>
+ <div class="col-md-9">
+ <div class="thumbnail">
+<img class="img-responesive" src=<%=c.image%> >
+ <div class="caption-full">
+<div>
+<span class="myHeader"><%= c.name%></span>
+<span class="mySmall">  Discovered by <%= c.author.username%></span>
+<span class="pull-right">
+<div id="campPrice">$9.0/night</div>
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-sm btn-success" id="btn-edit">Edit</button>
+  <button type="button" class="btn btn-sm btn-danger ">Delete</button>
+</div>
+</span>
+
+</div>
+
+ 
+
+ </div>
+ <div class="myDescription"><div>Description:<%= c.description%></div></div>
+ </div>
+ <div id="form-edit" class="panel panel-success">
+<div class="panel-heading"><h3 class="panel-title">Edit Camps</h3></div>
+<div class="panel-body">
+<form action=<%= "/campDetails/"+c._id+"/Edit"+"?_methodOR=PUT"%> method="post">
+<div class="form-group" ><input class="form-control" type="text" name="camp[name]" value=<%= c.name%>></div>
+<div class="form-group" ><input class="form-control" type="text" name="camp[image]" value=<%=c.image%>></div>
+<div class="form-group" ><textarea class="form-control" name="camp[description]"><%= c.description%></textarea></div>
+<div class="form-group" ><button class="btn btn-lg btn-primary btn-block">Submit</button></div>
+</form>
+</div>
+</div>
+ <div   class="testDivs well">
+ <div id="btnComDiv"  ><button  id="btnComVisb" class="btn  btn-success pull-right btn-block">Add Comment</button></div>
+<div id="formComDiv">
+<form  id="commentIuputForm" class="" action=<%= "/campDetails/"+c._id+"/newComment"%> method="POST">
+<div class="form-group" ><input class="form-control" type="text" name="content" placeholder="content"></div>
+<div class="form-group" ><button class="btn btn-lg btn-primary btn-block">Submit</button></div>
+</form></div>
+<div id="commentDiv"class="testDiv">
+<% c.comments.forEach(function(cmt){%>
+<div class="row mySingleCmtRow">
+<div class="col-md-12">
+        <div><strong><%= cmt.author.username%></strong><span class="pull-right">10 days ago</span></div>
+        <div><p><%= cmt.content%></p></div>
+</div>
+</div>
+<%});%>
+
+</div>
+
+<div>
+ 
+ </div>
+</div>
+
+
+</div>
+<div class="container">
+<a href="/campSets"><h5>Go back</h5></a>
+</div>
+<% include partials/camp_footer.ejs %>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Post Req</title>
+</head>
+
+<body>
+<form action="/addfriend" method="post">
+<input type="text" name="FriendName" value="FriendName">
+    <button>Send</button>
+</form>
+    <div>Friends List</div>
+<div id="friends"><%for(var i=0;i<frds.length;i++){%>
+<div><%=frds[i]%></div>
+<%}%></div>
+</canvas>
+</body>
+</html>

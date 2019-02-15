@@ -1,0 +1,84 @@
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.thumbnail .caption{
+    padding:4px;
+    }
+.linkBtn{
+    float: right;
+}
+.captionText{
+    text-align: center;
+}
+.captionText2{
+    font-size: 1.2em;
+}
+h2{
+margin:25px auto ;
+text-align: center;
+}
+h5{
+    margin:0px auto ;
+    text-align: center; 
+}
+#form-add{
+    width:100%;
+    margin: 1.5vh auto;
+}
+#footer{
+
+   margin:20px auto;
+}
+
+/*
+ .testDiv{
+    border:1px solid black;
+    border-radius:3px;
+    margin: 2vh auto;
+}
+ */
+.imgMain{
+    width: 100%;
+}
+#commentIuptForm{
+    width:100%;
+}
+#commentDiv{
+    margin: 3vh auto;
+}
+#btnComDiv{
+    height:2vh;
+    max-width: 30%;
+    margin: 0px auto;
+}
+#formComDiv{
+    margin: 5vh auto;
+}
+.myHeader{
+    font-size: 2.5em;
+}
+#campPrice{    
+font-size: 1.5em;
+margin: 0.5vh auto;
+}
+.thumbnail img{
+    width: 100%;
+}
+.thumbnail{
+    padding: 0px;
+}
+.thumbnail .caption-full{
+    padding:0.5vmin;
+}
+.mySmall{
+    padding: 0px 5px;
+    font-size: 1em;
+}
+.myWarning{
+    color: red;
+}
+.myDescription{
+    margin: 1.5vh auto;
+}

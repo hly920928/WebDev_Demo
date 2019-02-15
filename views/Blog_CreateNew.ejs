@@ -1,0 +1,17 @@
+<% include partials/blog_header.ejs%>
+
+<div class="ui main text container segment">
+<div class="ui huge header"><h1 class="alignCenter">Add New Blog</h1></div>
+<div class="container">
+<form class="ui form" action="/BlogCreateNew" method="post">
+<div class="field" ><input   type="text" name="NewBlog[title]" placeholder="Blog Title"></div>
+<div class="field" ><input   type="text" name="NewBlog[image]" placeholder="Image Url"></div>
+<div class="field" ><textarea name="NewBlog[body]" placeholder="Blog Content"></textarea></div>
+<div class="field" ><button class="ui primary button big">Submit</button></div>
+</div>
+</form>
+</div>
+
+
+</div>
+<% include partials/blog_footer.ejs%>

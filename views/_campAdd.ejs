@@ -1,0 +1,16 @@
+<% include partials/camp_header.ejs%>
+
+<div class="container">
+<h2>Add Camps!</h2>
+<div id="form-add">
+<form action="/campSets" method="post">
+<div class="form-group" ><input class="form-control" type="text" name="camp[name]" value="camp names"></div>
+<div class="form-group" ><input class="form-control" type="text" name="camp[image]" value="image url"></div>
+<div class="form-group" ><input class="form-control" type="text" name="camp[description]" value="camp Description"></div>
+<div class="form-group" ><button class="btn btn-lg btn-primary btn-block">Submit</button></div>
+</form>
+<a href="/campSets"><h5>Go back</h5></a>
+</div>
+
+
+</div>

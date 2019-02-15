@@ -1,0 +1,45 @@
+<% include partials/camp_header.ejs%>
+<script src="/scripts/campInfo_set.js"></script>
+<div class="container">
+<header class="jumbotron">
+<div class="container">
+<h1>CampSet Page</h1>
+<p>Vew all Camps</p>
+<button class="btn btn-primary btn-large" id="btnAddCamp">Add Camps</button>
+</div>
+</header>
+<div id="form-add" class="panel panel-success">
+<div class="panel-heading"><h3 class="panel-title">Add Camps!</h3></div>
+<div class="panel-body">
+<form action="/campSets" method="post">
+<div class="form-group" ><input class="form-control" type="text" name="camp[name]" value="camp names"></div>
+<div class="form-group" ><input class="form-control" type="text" name="camp[image]" value="image url"></div>
+<div class="form-group" ><textarea class="form-control" name="camp[description]">camp Description</textarea></div>
+<div class="form-group" ><button class="btn btn-lg btn-primary btn-block">Submit</button></div>
+</form>
+</div>
+</div>
+<div class="row">
+
+<% camps.forEach(function(c){%>
+
+<div class ="col-md-3 col-sm-6">
+<div class="thumbnail">
+
+<% var _s;if(c.isImageLocal){_s=url+c.image;}else{_s=c.image}%>
+<img class="img2" src=<%=_s%> >
+<%  var link="/campSets/"+c._id%>
+<div class="caption captionText"><span class="captionText2"><%= c.name%></span><a class="btn btn-primary btn-xs linkBtn" href=<%=link %>>More Detail</a></div>
+</div>
+
+</div>
+
+<%})%>
+
+
+
+</div>
+
+
+<% include partials/camp_footer.ejs %>
+</div>

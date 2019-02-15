@@ -1,0 +1,72 @@
+.square{
+    background:Pink;
+    padding:15%;
+    margin: 1.5%;
+    float: left;
+    border-radius: 15%;
+    transition: background 0.6s;
+    --webkit-transition: background 0.6s;
+    --moz-transition:background 0.6s;
+}
+html{
+    background:rgb(127, 127, 127);
+}
+#container{
+    max-width: 60%;
+    margin: 0 auto;
+}
+#Main_1{
+    text-align: center;
+    margin: 0 auto;
+    color:white;
+    padding: 20px 0;
+    line-height: 1.2;
+}
+button,#status_1{
+    border: none;
+    background: none;
+    font-size: 150%;
+    height: 100%;
+    transition:  all 0.5s;
+}
+button:hover{
+    background: steelblue;
+}
+#status_1{
+    text-align: center;
+    float:left;
+    width:20%;
+    height:100%;
+    font-size: 180%;
+}
+#span_rn{
+    float:left;
+    width:40%;
+   padding: auto;
+   height: 100%;
+}
+#span_EH{
+
+    float:left;
+    width:40%;
+    height: 100%;
+}
+#status_bar{
+    height: 35px;
+    text-align: center;
+    margin: 0 auto;
+   letter-spacing: 1px;
+    color:black;
+}
+#rgb{
+    font-size: 150%;
+}
+
+#btn_EH{
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.selectMode{
+    background:rgb(48, 97, 117);
+    color:white;
+}

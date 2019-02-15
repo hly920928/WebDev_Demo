@@ -1,0 +1,26 @@
+{"code":0,
+    "data":
+    {"city":
+        {"cityId":284609,"counname":"中国","name":"东城区","pname":"北京市","timezone":"8"},
+        "forecast":
+        [
+            {"conditionDay":"少云","conditionIdDay":"1",
+        "conditionIdNight":"31",
+        "conditionNight":"少云",
+        "predictDate":"2019-01-23",
+        "tempDay":"12","tempNight":"-4",
+        "updatetime":"2019-01-23 17:07:00",
+        "windDirDay":"北风",
+        "windDirNight":"东南风",
+        "windLevelDay":"2",
+        "windLevelNight":"2"},
+        {"conditionDay":"少云","conditionIdDay":"1",
+            "conditionIdNight":"2","conditionNight":"阴",
+            "predictDate":"2019-01-24","tempDay":"4",
+            "tempNight":"-7",
+            "updatetime":"2019-01-23 17:07:00",
+            "windDirDay":"东北风","windDirNight":"东北风",
+            "windLevelDay":"2","windLevelNight":"2"},
+            
+            {"conditionDay":"少云","conditionIdDay":"1","conditionIdNight":"31","conditionNight":"少云","predictDate":"2019-01-25","tempDay":"5","tempNight":"-5","updatetime":"2019-01-23 17:07:00","windDirDay":"北风","windDirNight":"东北风","windLevelDay":"2","windLevelNight":"1"}]},
+        "msg":"success","rc":{"c":0,"p":"success"}}

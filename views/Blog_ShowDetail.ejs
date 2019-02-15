@@ -1,0 +1,24 @@
+<% include partials/blog_header.ejs%>
+
+<div class="ui main text container segment">
+<div class="ui huge header"><h2><%= blog.title%></h2></div>
+<div class="ui top attached">
+<div class="item">
+<img class="ui centered rounded image" src=<%= blog.image%>> 
+<div  class="content dateLine">
+<span><%= blog.dateCreated.toDateString()%></span>
+<span class="mini ui right floated menu">
+<form  action=<%="/BlogEditOld/"+blog._id%> method="GET">
+<button class="mini ui primary button">Edit</button></form>
+<form  action=<%="/BlogDeleteOld/"+blog._id+"?_methodOR=DELETE"%> method="POST">
+<button class="mini ui red basic button">Delete</button></form>
+</span>
+</div>
+<div class="description"><p><%- blog.body%></p></div>
+
+</div>
+
+
+</div>
+</div>
+<% include partials/blog_footer.ejs%>

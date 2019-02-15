@@ -1,0 +1,47 @@
+<% include partials/blog_header.ejs%>
+
+
+
+
+
+<div class="container">
+<header class="jumbotron">
+<div class="container">
+</div>
+</header>
+
+
+
+
+<div class="ui main text container">
+<div class="ui huge centered header">RESTful Blog : All Blog</div>
+    <div class="ui top attached segment">
+        
+        <% allBlogs.forEach(function(blog){%>
+            <!--each_Begin-->
+            <div class="ui two column very relaxed stackable grid">
+                <div class="column">
+                <div class="myFrame"><div class="ui image"> <img src=<%=blog.image%>></div></div>
+                </div>
+                <div class="column">
+                <div class="content">
+                <a class="header" href=<%="/BlogShowDetail/"+blog._id%>><%=blog.title%></a>
+                <div class="meta"><%= blog.dateCreated.toDateString()%></div>
+                <div class="description"><%-blog.body%>...</div>
+                <div class="extra "><a class="ui" href=<%="/BlogShowDetail/"+blog._id%>><button class="ui right floated  primary button">More Detail</button></a></div>
+                </div>     
+                </div>
+               
+            </div>
+            <div class="ui divider"></div>
+            <!--each_End-->
+            <%});%>
+    </div>
+
+</div>
+
+
+
+
+
+<% include partials/blog_footer.ejs %>
