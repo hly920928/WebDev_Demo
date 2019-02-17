@@ -19,10 +19,10 @@
 <span class="mySmall">  Discovered by <%= c.author.username%></span>
 <span class="pull-right">
 <div id="campPrice">$9.0/night</div>
-<div class="btn-group" role="group">
-  <button type="button" class="btn btn-sm btn-success" id="btn-edit">Edit</button>
-  <button type="button" class="btn btn-sm btn-danger ">Delete</button>
-</div>
+
+<button type="button" class="btn btn-sm btn-success" id="btn-edit">Edit</button>
+<form class="btnInGroup" action=<%= "/campDetails/"+c._id+"/Destroy"+"?_methodOR=DELETE"%>  method="POST"><!--_methodOR must method="POST"-->
+<button class="btn btn-sm btn-danger ">Delete</button></form>
 </span>
 
 </div>
@@ -35,7 +35,7 @@
  <div id="form-edit" class="panel panel-success">
 <div class="panel-heading"><h3 class="panel-title">Edit Camps</h3></div>
 <div class="panel-body">
-<form action=<%= "/campDetails/"+c._id+"/Edit"+"?_methodOR=PUT"%> method="post">
+<form action=<%= "/campDetails/"+c._id+"/Update"+"?_methodOR=PUT"%> method="POST">
 <div class="form-group" ><input class="form-control" type="text" name="camp[name]" value=<%= c.name%>></div>
 <div class="form-group" ><input class="form-control" type="text" name="camp[image]" value=<%=c.image%>></div>
 <div class="form-group" ><textarea class="form-control" name="camp[description]"><%= c.description%></textarea></div>

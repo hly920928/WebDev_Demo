@@ -1,0 +1,72 @@
+.DivMain{
+   
+    background-color: rgb(66, 66, 66);
+    padding: 1em;
+    margin: 0.2em;
+    color:white;
+    text-align: center;
+}
+
+.outerBox{
+  border-radius: 10px;
+  border:0.2vmin black solid;
+  margin:0.8vh auto;
+}
+h2{
+
+    font-weight:normal; 
+}
+.SpanMain{
+    /*display: block;*/
+    background-color: rgb(218, 218, 218);
+    /*span is default inline. height width not efftect*/
+    height:50%;
+    width: 24%;
+    /**/
+    padding:0.3em;
+    margin: 0.2em auto;
+    color:black;
+    text-align: center;
+}
+#spanDiv{
+    display:block; 
+    height:8em;
+    margin: 0.1em auto;
+    padding:0.3em;
+}
+.spanDivBlock{
+    display: block;
+    background-color: rgb(218, 218, 218);
+    padding:0.1em;
+    height:20%;
+    width:60%;
+    margin: 0.1em auto;
+    color:black;
+    text-align: center;
+   
+}
+.DivInline{
+    display:inline; 
+    background-color: rgb(66, 66, 66);
+    padding:0.6em;
+    margin: 0.2em;
+    color:white;
+    text-align: center;
+}
+#DivInlineOut{
+    height:6em ;
+}
+#spanDivINBK{
+    height:12vh; 
+}
+.SpanMainINBK{
+    display:inline-block; 
+    background-color: rgb(218, 218, 218);
+    height:100%;
+    width:20%;
+    text-align: center;
+}
+#RunInDiv{
+    display: run-in;
+    width:50%;
+}

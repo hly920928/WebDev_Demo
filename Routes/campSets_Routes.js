@@ -31,17 +31,7 @@ function allRoutesStart(router){
       });
   });
   //must before "/campSets/add"
-  router.get("/campSets/:id",function(req,res){
-    var _id=req.params.id;
-    Camp.findById(_id).populate("comments").exec(
-        function(err,_camp){
-            if(err){
-                console.log(err);
-              }else{
-                res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp});
-              }
-    });
-  });
+ 
   router.post("/campSets",isLoggedIn,function(req,res){
     campMongo.addNewCampByUserToDB(req.body.camp,req.user,
       function(){res.redirect("/campSets/add");},

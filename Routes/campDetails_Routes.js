@@ -39,7 +39,7 @@ function allRoutesStart(router){
       */
      campMongo.addNewCommentAtCampByUserToDB({_id:id},req.body.content,req.user,function(){res.redirect("/campSets/"+id);});
   });
-  router.put("/campDetails/:id/Edit",function(req,res){
+  router.put("/campDetails/:id/Update",function(req,res){
     var idNow=req.params.id;
     //res.send("In put /campDetails/"+idNow+"/Edit");
     Camp.findOneAndUpdate({_id:idNow},req.body.camp,function(err,Camp){
@@ -48,6 +48,25 @@ function allRoutesStart(router){
          //res.redirect("/campDetails/"+idNow);
       }else{
         res.redirect("/campDetails/"+idNow);}
+    });
+  
+  });
+  router.delete("/campDetails/:id/Destroy",function(req,res){
+    var idNow=req.params.id;
+    //res.send("In put /campDetails/"+idNow+"/Edit");
+    Camp.findOne({_id:idNow},req.body.camp,function(err,CampFound){
+      if(err){
+        res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:CampFound,newWarning:"Error:Camp Can't found "});
+         //res.redirect("/campDetails/"+idNow);
+      }else{
+        CampFound.delete(function(err){
+          if(err){
+            res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:CampFound,newWarning:" Error:Camp Can't DELETE"});
+          }else{
+            res.redirect("/campSets/");
+          }
+        });
+       }
     });
   
   });

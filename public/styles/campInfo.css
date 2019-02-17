@@ -82,3 +82,6 @@ margin: 0.5vh auto;
 .myDescription{
     margin: 1.5vh auto;
 }
+.btnInGroup{
+    display: inline;
+}
