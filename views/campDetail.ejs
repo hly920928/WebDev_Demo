@@ -19,10 +19,11 @@
 <span class="mySmall">  Discovered by <%= c.author.username%></span>
 <span class="pull-right">
 <div id="campPrice">$9.0/night</div>
-
+<% if(currentUser&&c.author.id.equals(currentUser.id)){ %>
 <button type="button" class="btn btn-sm btn-success" id="btn-edit">Edit</button>
 <form class="btnInGroup" action=<%= "/campDetails/"+c._id+"/Destroy"+"?_methodOR=DELETE"%>  method="POST"><!--_methodOR must method="POST"-->
 <button class="btn btn-sm btn-danger ">Delete</button></form>
+<%}%>
 </span>
 
 </div>

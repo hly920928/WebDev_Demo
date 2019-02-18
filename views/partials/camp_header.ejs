@@ -29,6 +29,11 @@
 
 </nav>
 
-<%if(newWarning!="null"){%>
-<div class="container myWarning"><h4><%=newWarning%></h4></div>
+<%if(Warning!="null"){%>
+<%if(Warning.status=="success"){%>
+<div class="container alert alert-success myPopUp"><%=Warning.content%></div>
+<%}%>
+<%if(Warning.status=="fail"){%>
+<div class="container alert alert-danger myPopUp"><%=Warning.content%></div>
+<%}%>
 <%}%>

@@ -19,6 +19,7 @@ module.exports={
         allRoutesStart(router);
       }
   }
+  
 function allRoutesStart(router){
   router.get("/campSets",function(req,res){
     Camp.find({},
@@ -27,6 +28,31 @@ function allRoutesStart(router){
             console.log("Camp find error :"+err);
         }else{
           res.render("campSets.ejs",{url:urlroot,paths:filepath,camps:allCamps});
+        }
+      });
+  });
+  router.get("/campSets/:Statue",function(req,res){
+    if(req.user==undefined||req.user.username==undefined){
+        warning={
+          status:"fail",
+          content:"Please Login First"
+        };
+      res.render("campLogin.ejs",{Warning:warning});
+      return;
+    }
+    Camp.find({},
+      function(err,allCamps){  
+        if(err){
+            console.log("All Camp find error :"+err);
+        }else{
+          var warning="null";
+          if(req.params.Statue=="LoginOK"){
+            warning={
+              status:"success",
+              content:"Login Success! Welcome "+req.user.username+"!"
+            };
+          }
+          res.render("campSets.ejs",{url:urlroot,paths:filepath,camps:allCamps,Warning:warning});
         }
       });
   });

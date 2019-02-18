@@ -6,8 +6,34 @@ var Camp;
 var campMongo;
 var isLoggedIn;
 //var standardAddCallBack;
+function isUserOwnThisCamp(req,res,next){
+  if(req.params.id==undefined){res.redirect("back");}
+  var idCamp=req.params.id;
+ Camp.findById(idCamp,function(err,campFound){
+   if(err){res.redirect("back");}
+   else{
+     if(campFound.author.id.equals(req.user.id)){
+          next();
+     }else{
+        var warning={
+            status:"fail",
+            content:"You are not the owner of this camps!"
+          };
+          Camp.findById(idCamp).populate("comments").exec(
+            function(err,_camp){
+                if(err){
+                    console.log(err);
+                  }else{
+                    res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp,Warning: warning});
+                  }
+        });
+     }
+   }
+  
+ });
+}
 module.exports={
-      setUp:function(module_package,router){
+  setUp:function(module_package,router){
         express=module_package.express_module;
         filepath=module_package.filepathNow;
         urlroot=module_package.url;
@@ -27,7 +53,7 @@ function allRoutesStart(router){
             if(err){
                 console.log(err);
               }else{
-                res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp});
+                res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp,Warning: res.locals.Warning});
               }
     });
   });
@@ -39,7 +65,7 @@ function allRoutesStart(router){
       */
      campMongo.addNewCommentAtCampByUserToDB({_id:id},req.body.content,req.user,function(){res.redirect("/campSets/"+id);});
   });
-  router.put("/campDetails/:id/Update",function(req,res){
+  router.put("/campDetails/:id/Update",isLoggedIn,isUserOwnThisCamp,function(req,res){
     var idNow=req.params.id;
     //res.send("In put /campDetails/"+idNow+"/Edit");
     Camp.findOneAndUpdate({_id:idNow},req.body.camp,function(err,Camp){
@@ -51,10 +77,10 @@ function allRoutesStart(router){
     });
   
   });
-  router.delete("/campDetails/:id/Destroy",function(req,res){
+  router.delete("/campDetails/:id/Destroy",isLoggedIn,isUserOwnThisCamp,function(req,res){
     var idNow=req.params.id;
     //res.send("In put /campDetails/"+idNow+"/Edit");
-    Camp.findOne({_id:idNow},req.body.camp,function(err,CampFound){
+    Camp.findOne({_id:idNow},function(err,CampFound){
       if(err){
         res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:CampFound,newWarning:"Error:Camp Can't found "});
          //res.redirect("/campDetails/"+idNow);

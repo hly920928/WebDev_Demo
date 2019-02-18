@@ -3,9 +3,9 @@ var EditControl;
 window.onload=function(){
   campInfoOnWindowLoad();
   console.log("OK campInfo_detail");
-  commentControl=ButtonToHideDiv;
-  commentControl.setup("btnComVisb","commentIuputForm");
-  EditControl=ButtonToHideDiv;
-  EditControl.setup("btn-edit","form-edit");
+  commentControl=Object.create(ButtonToHideDivProto);
+  commentControl.setup("#btnComVisb","#commentIuputForm",FuncPackage(isLogin,null,null));
+  EditControl=Object.create(ButtonToHideDivProto);
+  EditControl.setup("#btn-edit","#form-edit", FuncPackage(isLogin,null,null));
 }
 

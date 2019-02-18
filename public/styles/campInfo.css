@@ -60,6 +60,7 @@ h5{
     font-size: 2.5em;
 }
 #campPrice{    
+    text-align: right;
 font-size: 1.5em;
 margin: 0.5vh auto;
 }
@@ -76,9 +77,11 @@ margin: 0.5vh auto;
     padding: 0px 5px;
     font-size: 1em;
 }
-.myWarning{
-    color: red;
+.myPopUp{
+    font-size:1.2em;
+    width:30%; 
 }
+
 .myDescription{
     margin: 1.5vh auto;
 }

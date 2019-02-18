@@ -24,6 +24,22 @@ function allRoutesStart(router){
   router.get("/login",function(req,res){
     res.render("campLogin.ejs");
   });
+  router.get("/login/:Status",function(req,res){
+    var warning="null";
+    if(req.params.Status=="LoginError"){
+      warning={
+        status:"fail",
+        content:"Login Error!Try Again."
+      };
+    }
+    if(req.params.Status=="PleaseLogin"){
+      warning={
+        status:"fail",
+        content:"Please Login First"
+      };
+    }
+    res.render("campLogin.ejs",{Warning:warning});
+  });
   router.post("/processRegister",function(req,res){
     var un=req.body.username;
     var pw=req.body.password;
@@ -43,15 +59,15 @@ function allRoutesStart(router){
     }
     );
   });
-  router.post("/processLogin",
-              passport.authenticate("local",
-              {successRedirect:"/campSets",
-              failureRedirect:"/login"}),
-              function(req,res){});
+  router.post("/processLogin", passport.authenticate('local', 
+    { successRedirect: "/campSets/LoginOK",
+     failureRedirect: '/login/LoginError' }),
+            function(req,res){} 
+  );
   
   router.get("/logout",function(req,res){
     req.logOut();
-    res.redirect("/");
+    res.redirect("back");
   });
   
   }

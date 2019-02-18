@@ -78,9 +78,11 @@ var modulePackge={
 //middleware pass user
 app.use(function(req,res,next){
   res.locals.currentUser=req.user;
-  res.locals.newWarning="null";
+  res.locals.Warning="null";
   next();
-})
+});
+
+ 
 //start server
 app.listen(PORT,HOST,function(){
   console.log("server start "+HOST+":"+PORT);
