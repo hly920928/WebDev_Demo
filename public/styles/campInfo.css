@@ -60,9 +60,13 @@ h5{
     font-size: 2.5em;
 }
 #campPrice{    
-    text-align: right;
+   
 font-size: 1.5em;
 margin: 0.5vh auto;
+}
+.textAlignRight{
+
+    text-align: right;
 }
 .thumbnail img{
     width: 100%;
@@ -87,4 +91,21 @@ margin: 0.5vh auto;
 }
 .btnInGroup{
     display: inline;
+}
+.commentHeader{
+    height: 4.5vh;
+}
+.commentAuthor{
+    font-size:1.2em ;
+}
+hr {
+    border-width: 1px;
+    border-color: rgb(61, 61, 61);
+}
+.formComEditDiv{
+    border-radius:5px;
+}
+textarea{
+    width:100%;
+    padding: 0px;
 }

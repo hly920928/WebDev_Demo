@@ -18,8 +18,8 @@
 <span class="myHeader"><%= c.name%></span>
 <span class="mySmall">  Discovered by <%= c.author.username%></span>
 <span class="pull-right">
-<div id="campPrice">$9.0/night</div>
-<% if(currentUser&&c.author.id.equals(currentUser.id)){ %>
+<div id="campPrice" class="textAlignRight">$9.0/night</div>
+<% if(currentUser&&c.author.id.equals(currentUser.id) ){ %>
 <button type="button" class="btn btn-sm btn-success" id="btn-edit">Edit</button>
 <form class="btnInGroup" action=<%= "/campDetails/"+c._id+"/Destroy"+"?_methodOR=DELETE"%>  method="POST"><!--_methodOR must method="POST"-->
 <button class="btn btn-sm btn-danger ">Delete</button></form>
@@ -52,14 +52,32 @@
 <div class="form-group" ><button class="btn btn-lg btn-primary btn-block">Submit</button></div>
 </form></div>
 <div id="commentDiv"class="testDiv">
-<% c.comments.forEach(function(cmt){%>
-<div class="row mySingleCmtRow">
+<% var cmt_id=0; c.comments.forEach(function(cmt){%>
+<div class="row mySingleCmtRow" id=<%="cmt_"+cmt_id %> >
 <div class="col-md-12">
-        <div><strong><%= cmt.author.username%></strong><span class="pull-right">10 days ago</span></div>
+        <div class="commentHeader"><strong class="commentAuthor"><%= cmt.author.username%></strong><span class="pull-right">
+        <div  class="textAlignRight">10 days ago</div>
+        <% if(currentUser&&cmt.author.id.equals(currentUser.id) ){ %>
+        <div class="cmtButtonGroup">
+        <button class="btn btn-xs btn-success btnEdit" >Edit</button>
+        <form class="btnInGroup" action=<%= "/campDetails/"+c._id+"/destroyComment/" +cmt._id+ "?_methodOR=DELETE"%>  method="POST"><!--_methodOR must method="POST"-->
+        <button class="btn btn-xs btn-danger btnDelete">Delete</button></form>
+        </div>
+        <%}%>
+        </span>
+        </div>
         <div><p><%= cmt.content%></p></div>
+        <div class="formComEditDiv">
+        <h5>Edit Comment Content</h5>
+        <form  class="" action=<%= "/campDetails/"+c._id+"/updateComment/" +cmt._id+"?_methodOR=PUT"    %> method="POST">
+      <div class="" ><textarea name="content" ><%= cmt.content%></textarea></div>
+      <div class="" ><button class="btn btn-sm btn-primary btn-block">Submit</button></div>
+      </form>
+      </div>
 </div>
 </div>
-<%});%>
+<hr>
+<% cmt_id++;});%>
 
 </div>
 
