@@ -1,10 +1,11 @@
 const PORT = 44564 ;
-//const HOST = "240e:e0:8a44:3b00:6dff:3469:34d0:e971";
+
 const HOST = "192.168.1.6";
 //127.0.0.1
 //116.234.26.211
 //192.168.1.6
 //240e:e0:8a44:3b00:c90:87e6:6297:ca4a
+//"240e:e0:8a44:3b00:6dff:3469:34d0:e971";
 const express=require("express");
 const app=express();
 app.use(express.static(__dirname+"/public"));//__dirname:dir of this .js file
@@ -56,7 +57,8 @@ campMongo.linkAuthModule(passport,passportLocal,passportLocalMongoose);
 var User=campMongo.userModel();
 campMongo.setupUserPassport(User);
 //middleware
-var isLoggedIn=myAuth.isLoggedIn;
+var myMiddleWarePackage=require("./myMiddleWare");
+myMiddleWarePackage.setup(Camp,Comment);
 
 
 var modulePackge={
@@ -72,8 +74,8 @@ var modulePackge={
   user_model:User,
   myMongo_module:campMongo,
   userModel_module:User,
-  isLoggedIn_middleware:isLoggedIn,
-  stdCallBack:standardAddCallBack
+  stdCallBack:standardAddCallBack,
+  middleWare :myMiddleWarePackage
 }
 //middleware pass user
 app.use(function(req,res,next){

@@ -13,9 +13,9 @@ module.exports={
         urlroot=module_package.url;
         //mongoose=module_package.mongoose_module;
         campMongo=module_package.myMongo_module;
-        Camp=module_package.myMongo_module.campModel();
+        Camp=module_package.camp_model;
         //standardAddCallBack=module_package.stdCallBack;
-        isLoggedIn=module_package.isLoggedIn_middleware;
+        isLoggedIn=module_package.middleWare.isLoggedIn;
         allRoutesStart(router);
       }
   }

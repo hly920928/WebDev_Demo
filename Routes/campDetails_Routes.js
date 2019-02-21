@@ -6,33 +6,10 @@ var Camp;
 var Comment;
 var campMongo;
 var isLoggedIn;
+var isUserOwnThisCamp;
+var isUserOwnThisComment;
 //var standardAddCallBack;
-function isUserOwnThisCamp(req,res,next){
-  if(req.params.id==undefined){res.redirect("back");}
-  var idCamp=req.params.id;
- Camp.findById(idCamp,function(err,campFound){
-   if(err){res.redirect("back");}
-   else{
-     if(campFound.author.id.equals(req.user.id)){
-          next();
-     }else{
-        var warning={
-            status:"fail",
-            content:"You are not the owner of this camps!"
-          };
-          Camp.findById(idCamp).populate("comments").exec(
-            function(err,_camp){
-                if(err){
-                    console.log(err);
-                  }else{
-                    res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp,Warning: warning});
-                  }
-        });
-     }
-   }
-  
- });
-}
+
 module.exports={
   setUp:function(module_package,router){
 
@@ -44,7 +21,9 @@ module.exports={
         Camp=module_package.camp_model;
         Comment=module_package.comment_model;
         //standardAddCallBack=module_package.stdCallBack;
-        isLoggedIn=module_package.isLoggedIn_middleware;
+        isLoggedIn=module_package.middleWare.isLoggedIn;
+        isUserOwnThisCamp=module_package.middleWare.isUserOwnThisCamp;
+        isUserOwnThisComment=module_package.middleWare.isUserOwnThisComment;
         allRoutesStart(router);
       }
   }
@@ -98,7 +77,7 @@ function allRoutesStart(router){
        }
     });
   });
-  router.put("/campDetails/:campId/updateComment/:cmtId",isLoggedIn,function(req,res){
+  router.put("/campDetails/:campId/updateComment/:cmtId",isLoggedIn,isUserOwnThisComment,function(req,res){
     var campId=req.params.campId;var commentId=req.params.cmtId;
     //res.send("In comment update");
     Comment.findOneAndUpdate({_id:commentId},{content:req.body.content},function(err,_comment){
@@ -109,5 +88,23 @@ function allRoutesStart(router){
         res.redirect("/campDetails/"+campId);}
     });
   
+  });
+  router.delete("/campDetails/:campId/destroyComment/:cmtId",isLoggedIn,isUserOwnThisComment,function(req,res){
+    var campId=req.params.campId;var commentId=req.params.cmtId;
+    //res.send("In put /campDetails/"+idNow+"/Edit");
+    Comment.findOne({_id:commentId},function(err,_commentFound){
+      if(err){
+        res.redirect("/campDetails/"+campId);
+         //res.redirect("/campDetails/"+idNow);
+      }else{
+        _commentFound.delete(function(err){
+          if(err){
+            res.redirect("/campDetails/"+campId);
+          }else{
+            res.redirect("/campDetails/"+campId);
+          }
+        });
+       }
+    });
   });
   }

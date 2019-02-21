@@ -109,3 +109,30 @@ h2{
     height: 30vh;
     padding:3vmax; 
 }
+.FlexBoxRow{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.FlexBoxColumn{
+    display: flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+}
+.FlexDiv{
+    min-width:200px;
+    min-height:200px;
+    max-width:300px;
+    flex:1 1 auto;
+    margin: 2px;
+    background-color: rgb(58, 71, 92);
+    border-radius: 10px;
+    color:white;
+    text-align: center;
+    padding: 2vmax ;
+    box-sizing: border-box;
+}
+.FlexDivBigger{
+    min-width:400px;
+    min-height:300px;
+}

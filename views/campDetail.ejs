@@ -57,7 +57,7 @@
 <div class="col-md-12">
         <div class="commentHeader"><strong class="commentAuthor"><%= cmt.author.username%></strong><span class="pull-right">
         <div  class="textAlignRight">10 days ago</div>
-        <% if(currentUser&&cmt.author.id.equals(currentUser.id) ){ %>
+        <% if(currentUser&&cmt.author.id.equals(currentUser.id)){ %>
         <div class="cmtButtonGroup">
         <button class="btn btn-xs btn-success btnEdit" >Edit</button>
         <form class="btnInGroup" action=<%= "/campDetails/"+c._id+"/destroyComment/" +cmt._id+ "?_methodOR=DELETE"%>  method="POST"><!--_methodOR must method="POST"-->
