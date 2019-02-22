@@ -9,7 +9,8 @@ module.exports={
         if(req.isAuthenticated()){
             return next();
         }else{
-            res.redirect("/login/PleaseLogin");}
+            req.flash("message",["fail","Please Login!!!"]);
+            res.redirect("/login");}
     },
     isUserOwnThisCamp: function(req,res,next){
         if(req.params.id==undefined){res.redirect("back");}
@@ -20,18 +21,8 @@ module.exports={
            if(campFound.author.id.equals(req.user.id)){
                 next();
            }else{
-              var warning={
-                  status:"fail",
-                  content:"You are not the owner of this camps!"
-                };
-                Camp.findById(idCamp).populate("comments").exec(
-                  function(err,_camp){
-                      if(err){
-                          console.log(err);
-                        }else{
-                          res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp,Warning: warning});
-                        }
-              });
+             req.flash("message",["fail","You are not the owner of this camps!"]);
+             res.redirect("back");
            }
          }
         
@@ -46,18 +37,8 @@ module.exports={
            if(commentFound.author.id.equals(req.user.id)){
                 next();
            }else{
-              var warning={
-                  status:"fail",
-                  content:"You are not the owner of this comments!"
-                };
-                Camp.findById(campId).populate("comments").exec(
-                  function(err,_camp){
-                      if(err){
-                          console.log(err);
-                        }else{
-                          res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp,Warning: warning});
-                  }
-              });
+                req.flash("message",["fail","You are not the owner of this comments!"]);
+                res.redirect("back");
            }
          }
         

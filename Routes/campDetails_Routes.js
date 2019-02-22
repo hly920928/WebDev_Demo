@@ -8,6 +8,7 @@ var campMongo;
 var isLoggedIn;
 var isUserOwnThisCamp;
 var isUserOwnThisComment;
+var getMyWarning;
 //var standardAddCallBack;
 
 module.exports={
@@ -24,6 +25,7 @@ module.exports={
         isLoggedIn=module_package.middleWare.isLoggedIn;
         isUserOwnThisCamp=module_package.middleWare.isUserOwnThisCamp;
         isUserOwnThisComment=module_package.middleWare.isUserOwnThisComment;
+        getMyWarning=module_package.getMyWarning;
         allRoutesStart(router);
       }
   }
@@ -35,7 +37,7 @@ function allRoutesStart(router){
             if(err){
                 console.log(err);
               }else{
-                res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp,Warning: res.locals.Warning});
+                res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:_camp,Warning:getMyWarning(req)});
               }
     });
   });
@@ -52,9 +54,10 @@ function allRoutesStart(router){
     //res.send("In put /campDetails/"+idNow+"/Edit");
     Camp.findOneAndUpdate({_id:idNow},req.body.camp,function(err,Camp){
       if(err){
-        res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:Camp});
+        res.render("campDetail.ejs",{url:urlroot,paths:filepath,c:Camp,Warning:getMyWarning(req)});
          //res.redirect("/campDetails/"+idNow);
       }else{
+        req.flash("myWarning",["success","Update Camp OK!!!"]);
         res.redirect("/campDetails/"+idNow);}
     });
   

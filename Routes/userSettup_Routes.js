@@ -5,6 +5,7 @@ var urlroot;
 var User;
 var passport;
 var standardAddCallBack;
+var getMyWarning;
 module.exports={
       setUp:function(module_package,router){
         express=module_package.express_module;
@@ -15,30 +16,24 @@ module.exports={
         passport=module_package.passport_module;
         standardAddCallBack=module_package.stdCallBack;
         allRoutesStart(router);
+        getMyWarning=module_package.getMyWarning;
       }
   }
 function allRoutesStart(router){
   router.get("/register",function(req,res){
-    res.render("campRegister.ejs");
+    res.render("campRegister.ejs",{Warning:getMyWarning(req)});
   });
   router.get("/login",function(req,res){
-    res.render("campLogin.ejs");
+    res.render("campLogin.ejs",{Warning:getMyWarning(req)});
   });
   router.get("/login/:Status",function(req,res){
-    var warning="null";
     if(req.params.Status=="LoginError"){
-      warning={
-        status:"fail",
-        content:"Login Error!Try Again."
-      };
+      req.flash("myWarning",["fail","Login Error!Try Again."]);
     }
     if(req.params.Status=="PleaseLogin"){
-      warning={
-        status:"fail",
-        content:"Please Login First"
-      };
+      req.flash("myWarning",["fail","!!!Please Login First!!!"]);
     }
-    res.render("campLogin.ejs",{Warning:warning});
+    res.redirect("/login");
   });
   router.post("/processRegister",function(req,res){
     var un=req.body.username;

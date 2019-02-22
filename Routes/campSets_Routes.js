@@ -5,6 +5,7 @@ var urlroot;
 var Camp;
 var campMongo;
 var isLoggedIn;
+var getMyWarning;
 //var standardAddCallBack;
 module.exports={
       setUp:function(module_package,router){
@@ -16,6 +17,7 @@ module.exports={
         Camp=module_package.camp_model;
         //standardAddCallBack=module_package.stdCallBack;
         isLoggedIn=module_package.middleWare.isLoggedIn;
+        getMyWarning=module_package.getMyWarning;
         allRoutesStart(router);
       }
   }
@@ -27,34 +29,19 @@ function allRoutesStart(router){
         if(err){
             console.log("Camp find error :"+err);
         }else{
-          res.render("campSets.ejs",{url:urlroot,paths:filepath,camps:allCamps});
+          var myW=getMyWarning(req);
+          res.render("campSets.ejs",{url:urlroot,paths:filepath,camps:allCamps,Warning:myW});
         }
       });
   });
   router.get("/campSets/:Statue",function(req,res){
     if(req.user==undefined||req.user.username==undefined){
-        warning={
-          status:"fail",
-          content:"Please Login First"
-        };
-      res.render("campLogin.ejs",{Warning:warning});
-      return;
+      req.flash("myWarning",["fail","Please Login First!!!"]);
     }
-    Camp.find({},
-      function(err,allCamps){  
-        if(err){
-            console.log("All Camp find error :"+err);
-        }else{
-          var warning="null";
-          if(req.params.Statue=="LoginOK"){
-            warning={
-              status:"success",
-              content:"Login Success! Welcome "+req.user.username+"!"
-            };
-          }
-          res.render("campSets.ejs",{url:urlroot,paths:filepath,camps:allCamps,Warning:warning});
-        }
-      });
+    if(req.params.Statue=="LoginOK"){
+      req.flash("myWarning",["success","Login Success!!! Welcome "+req.user.username+"!!!"]);
+    }
+     res.redirect("/campSets");
   });
   //must before "/campSets/add"
  

@@ -18,7 +18,19 @@ const urlroot="http://127.0.0.1:44564";
 const methodOverride=require("method-override");
 app.use(methodOverride("_methodOR"));
 //mongoDB
-
+const flash = require('connect-flash');
+function getMyWarningFunc(req){
+  var flashMessage=req.flash("myWarning");
+  var warning="null";
+  if(flashMessage.lenght!=0){
+    warning={
+      status:flashMessage[0],
+      content:flashMessage[1]
+    }
+  }
+  return warning;
+}
+app.use(flash())
 var campMongo=require("./node_modules_my/campInfo_Mongoose_module.js");
 var mongoose=campMongo.getMongoose();
 function standardAddCallBack(err,data){
@@ -75,7 +87,8 @@ var modulePackge={
   myMongo_module:campMongo,
   userModel_module:User,
   stdCallBack:standardAddCallBack,
-  middleWare :myMiddleWarePackage
+  middleWare :myMiddleWarePackage,
+  getMyWarning:getMyWarningFunc
 }
 //middleware pass user
 app.use(function(req,res,next){
