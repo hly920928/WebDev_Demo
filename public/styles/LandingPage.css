@@ -1,0 +1,80 @@
+body{
+    background-color:black; 
+}
+#landing-header{
+    z-index:1;
+    position: relative;/*in order to make  z-index effective*/
+    text-align: center;
+    padding-top: 40vh;
+    color: white;
+}
+.slideshow{
+    position: fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:0;
+    list-style: none;
+    margin: 0;
+    padding: 0; 
+}
+.myNav{
+
+    z-index:2;
+}
+.slidesImg{
+    z-index:0;
+    background-size:cover;
+}
+.slideshow li{
+    z-index:0;
+    position: absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-size:cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    z-index:0;
+    opacity: 0;
+    animation: myImageAnimation 50s linear infinite;
+}
+.slideshow li:nth-child(1){
+    background-image: url("/images/Landing_page_1.jpg");
+    animation-delay: 0s;
+}
+.slideshow li:nth-child(2){
+    background-image: url("/images/Landing_page_2.jpg");
+    animation-delay: 10s;
+}
+.slideshow li:nth-child(3){
+    background-image: url("/images/Landing_page_3.jpg");
+    animation-delay: 20s;
+}
+.slideshow li:nth-child(4){
+    background-image: url("/images/Landing_page_4.jpg");
+    animation-delay: 30s;
+}
+.slideshow li:nth-child(5){
+    background-image: url("/images/Landing_page_5.jpg");
+    animation-delay: 40s;
+}
+@keyframes myImageAnimation {
+    0%{
+        opacity: 0;
+      animation-timing-function: ease-in;
+    }
+    10%{
+        opacity: 1;
+        animation-timing-function: ease-in;
+      }
+      20%{
+        opacity: 1;
+      }
+      30%{
+        opacity: 0;
+      }
+    }
+/*"/images/Landing_page_1.jpg"*/
