@@ -17,8 +17,8 @@
 <div>
 <span class="myHeader"><%= c.name%></span>
 <span class="mySmall">  Discovered by <%= c.author.username%></span>
-<span class="pull-right">
-<div id="campPrice" class="textAlignRight">$9.0/night</div>
+<span class="pull-right"><%var nowPrice="0.00";if(c.price!=undefined){nowPrice=c.price;}%>
+<div id="campPrice" class="textAlignRight">$<%= nowPrice%>/night</div>
 <% if(currentUser&&c.author.id.equals(currentUser.id) ){ %>
 <button type="button" class="btn btn-sm btn-success" id="btn-edit">Edit</button>
 <form class="btnInGroup" action=<%= "/campDetails/"+c._id+"/Destroy"+"?_methodOR=DELETE"%>  method="POST"><!--_methodOR must method="POST"-->
@@ -39,6 +39,7 @@
 <form action=<%= "/campDetails/"+c._id+"/Update"+"?_methodOR=PUT"%> method="POST">
 <div class="form-group" ><input class="form-control" type="text" name="camp[name]" value=<%= c.name%>></div>
 <div class="form-group" ><input class="form-control" type="text" name="camp[image]" value=<%=c.image%>></div>
+<div class="form-group" ><input class="form-control" type="number" name="camp[price]" value="0.00" min="0.00" step="0.01"></div>
 <div class="form-group" ><textarea class="form-control" name="camp[description]"><%= c.description%></textarea></div>
 <div class="form-group" ><button class="btn btn-lg btn-primary btn-block">Submit</button></div>
 </form>
