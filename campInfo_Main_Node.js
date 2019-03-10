@@ -1,10 +1,11 @@
 //const PORT = 44564 ;const HOST = "192.168.1.5";
-const PORT = process.env.PORT;const HOST = process.env.IP;
-//127.0.0.1
-//116.234.26.211
-//192.168.1.5
-//240e:e0:8a44:3b00:c90:87e6:6297:ca4a
-//"240e:e0:8a44:3b00:6dff:3469:34d0:e971";
+var PORT;var HOST;
+
+if(process.env.COMPUTERNAME=="HLY2-PC"){
+  PORT=44564;HOST = "192.168.1.5";
+}else{
+  PORT = process.env.PORT;HOST = process.env.IP;
+}
 const express=require("express");
 const app=express();
 app.use(express.static(__dirname+"/public"));//__dirname:dir of this .js file
