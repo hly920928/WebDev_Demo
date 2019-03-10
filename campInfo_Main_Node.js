@@ -1,9 +1,8 @@
-const PORT = 44564 ;
-
-const HOST = "192.168.1.6";
+const PORT = 44564 ;const HOST = "192.168.1.5";
+//const PORT = process.env.PORT;const HOST = process.env.IP;
 //127.0.0.1
 //116.234.26.211
-//192.168.1.6
+//192.168.1.5
 //240e:e0:8a44:3b00:c90:87e6:6297:ca4a
 //"240e:e0:8a44:3b00:6dff:3469:34d0:e971";
 const express=require("express");
