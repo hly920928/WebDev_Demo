@@ -1,5 +1,5 @@
-const PORT = 44564 ;const HOST = "192.168.1.5";
-//const PORT = process.env.PORT;const HOST = process.env.IP;
+//const PORT = 44564 ;const HOST = "192.168.1.5";
+const PORT = process.env.PORT;const HOST = process.env.IP;
 //127.0.0.1
 //116.234.26.211
 //192.168.1.5
