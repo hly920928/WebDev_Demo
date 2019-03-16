@@ -1,3 +1,8 @@
+@media(max-width:1080px),(orientation:portrait){
+    body{
+        background-color: darkslategray;
+    }
+}
 .DivMain{
    height: 80%;
    width:24% ;
@@ -422,4 +427,22 @@ a:active{
 }
 .CarouselDiv>*:first-of-type{
     left:10px;
+}
+.bgImgDiv{
+    padding-top: 60%;
+    /*Set padding-top 60% container width because not content and margin ,
+    the height of the box=60% container width,
+     fix div aspect ratio
+    using height and width is wrong ,
+    because height:100%(parent height) width:100%(parent width),
+    parent height in this case=0 */
+    background: url("../images/teapot_2.jpg")  center;
+    background-repeat: no-repeat;
+    border: 3px solid black ;
+    background-size: contain;
+}
+.largeDiv{
+    width: 25vw;
+    height: 25vw;
+    background-color:dimgray;
 }
