@@ -3,6 +3,8 @@ var PORT;var HOST;
 
 if(process.env.COMPUTERNAME=="HLY2-PC"){
   PORT=44564;HOST = "192.168.1.5";
+}else if (process.env.PWD== '/root/AlC_NodeWebDev') {
+    PORT = 27001 ; HOST= "0.0.0.0";
 }else{
   PORT = process.env.PORT;HOST = process.env.IP;
 }

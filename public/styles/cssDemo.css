@@ -410,10 +410,12 @@ a:active{
     display: inline-block;
     width:10%;
     height:20%;
-    background: lightblue;
     position: absolute;
     top:45%;
     z-index: 999;
+}
+.CarouselDiv>*{
+    font-size:6em;
 }
 .CarouselDiv>*:last-of-type{
     right:10px;
