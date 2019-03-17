@@ -1,6 +1,6 @@
 //ES6
 //import
-import("./other.js");
+import {exportModule1,exportModule2} from "other.js";
 
 var fn1=(a=0,b=0)=>{
     let args=arguments;
