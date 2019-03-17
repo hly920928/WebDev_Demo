@@ -1,8 +1,9 @@
 //ES6
 //import
-import('./modules/file.js').then(
+//can't work on local file systems
+import("./other.js").then(
    (module)=>{
-       console.log(module);
+      module.exportModule1.fn1();
    }
 );
 var fn1=(a=0,b=0)=>{
