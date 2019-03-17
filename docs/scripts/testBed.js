@@ -1,7 +1,10 @@
 //ES6
 //import
-import {exportModule1,exportModule2} from "other.js";
-
+import('./modules/file.js').then(
+   (module)=>{
+       console.log(module);
+   }
+);
 var fn1=(a=0,b=0)=>{
     let args=arguments;
     return a==b;
