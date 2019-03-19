@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>A Simple Weather App</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" media="(min-width:100px)" href="../styles/weatherApp.css" />
+</head>
+<body>
+                <header>
+                                <h1>A Simple Weather App</h1>
+                            </header>
+                            <div class="main">
+                                <div id="search">
+                                    <label for="city">City Name</label>
+                                    <input type="text" id="city">
+                                    <button type="button">Show Weather!</button>
+                                </div>
+                                <div class="noDisplay" id="load">Loading...</div>
+                                <div class="noDisplay" id="weather">
+                                    <h1 id="weatherCity">City Name</h1>
+                            
+                                    <div id="weatherDescription">Weather Description</div>
+                                    <div id="weatherTemperature">Temperature</div>
+                            
+                                </div>
+                            </div>
+<script>
+  import("../scripts/weatherApp.js").then(()=>{console.log("weatherApp.js loading ok")});
+</script>
+</html>
