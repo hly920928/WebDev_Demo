@@ -376,6 +376,24 @@ function arrayFrom(){
 }
 //Reflect API
 //Proxy API
+//Form Validity
+function myReportValidity(event,message){
+    let input=event.target;
+    if(input.checkValidity()){
+        input.setCustomValidity("");
+    }else{
+        input.setCustomValidity(message);
+    }
+}
+function setAllCustomValidity(){
+    let formDiv=document.querySelector(".testFormValidationDiv");
+    formDiv.querySelector("input[name='name']").addEventListener("change",(event)=>{myReportValidity(event,"Must have name!!!");});
+    formDiv.querySelector("input[name='e-mail']").addEventListener("change",(event)=>{myReportValidity(event,"Must be vaild E-mail !!!");});
+    formDiv.querySelector("input[name='phone']").addEventListener("change",(event)=>{myReportValidity(event,"Must be vaild Phone !!!");});
+    formDiv.querySelectorAll(".genderSelector>input").forEach((radio)=>{
+        radio.addEventListener("change",(event)=>{myReportValidity(event,"Must have name!!!");})
+    });
+}
 window.onload=function(){
     console.log("Load js");
     var myEventListener_1=function(){
@@ -390,4 +408,5 @@ window.onload=function(){
     document.querySelector("#myEventTarget_1").addEventListener("click",myEventListener_1,false);
     document.querySelector("#myEventTarget_2").addEventListener("click",myEventListener_1,true);
     document.querySelector("#myEventTarget_3").addEventListener("click",myEventListener_2,true);
+    setAllCustomValidity();
 }
