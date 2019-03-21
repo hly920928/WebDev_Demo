@@ -405,29 +405,7 @@ a:active{
     transition:height 0.5s;
 }
 
-.CarouselDiv{
-    width:1024px;
-    height: 512px;
-    background: steelblue;
-    position: relative;
-}
-.CarouselDiv>*{
-    display: inline-block;
-    width:10%;
-    height:20%;
-    position: absolute;
-    top:45%;
-    z-index: 999;
-}
-.CarouselDiv>*{
-    font-size:6em;
-}
-.CarouselDiv>*:last-of-type{
-    right:10px;
-}
-.CarouselDiv>*:first-of-type{
-    left:10px;
-}
+
 .bgImgDiv{
     padding-top: 60%;
     /*Set padding-top 60% container width because not content and margin ,
@@ -505,3 +483,170 @@ a:active{
 input:invalid {
     box-shadow: inset 0 0 5px 1px red;
   }
+  .smallDiv_II{
+    width: 20%;
+    padding-top: 1%;
+    background-color: cornflowerblue;
+    position: relative;
+    transition-property: padding-top ;
+    transition-duration: 0.3s;
+    transition-timing-function:linear;
+}
+.smallDiv_II_in{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left:0px;
+    background-color: rgb(117, 94, 139);
+  
+}
+
+.smallDiv_II:hover{
+    padding-top:20%;
+}
+/*Modal*/
+.Modal_Backround{
+    display: none;
+    background-color: rgb(0, 0, 0,0.0);
+   
+}
+
+.Modal_Background_displayed{
+    z-index: 99;
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top:0px;
+    left:0px;
+    background-color: rgb(0, 0, 0,0.6);
+    transition-timing-function:ease-in-out;
+    transition-property: background-color ;
+    transition-duration: 0.2s;
+}
+.Modal_Background_displayed>.ModalMainMeus{
+    display: block;
+}
+.ModalBackground>*{
+    display: none;
+}
+.ModalMainMeus{
+    position:relative;
+    top:10vh;
+    margin: 10vh auto auto auto;
+    width:600px;
+    height: 700px;
+    background-color:blanchedalmond;
+}
+.ModalMainMeus>button{
+    display: block; 
+    position:absolute;
+    right: 0px;
+}
+/*Carousel*/
+.CarouselDiv{
+    width:1280px;
+    height: 720px;
+    background: steelblue;
+    position: relative;
+    overflow: hidden;
+}
+.CarouselDiv>.arrowBtnDiv{
+    display: inline-block;
+    width:10%;
+    padding-top: 10%;
+    position: absolute;
+    top:45%;
+    z-index: 999;
+    
+}
+.CarouselDiv>.arrowBtnDiv>i{
+    font-size:7em;
+    position: absolute;
+    top:0;
+    transition-duration: 0.1s;
+    transition-property: color;
+    transition-timing-function: linear;
+}
+.CarouselDiv>.arrowBtnDiv>i:hover{
+    color:white;
+    
+}
+.CarouselDiv>.arrowBtnDiv>i:active{
+    color:gray;
+}
+.CarouselDiv>.arrowBtnDiv:last-of-type{
+    right:10px;
+}
+.CarouselDiv>.arrowBtnDiv:first-of-type{
+    left:10px;
+}
+.CarouselDiv>img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    display: none;
+}
+
+/*Left*/
+.CarouselDiv>.CarouselSlidingOutLeft{
+    animation-name: CarouselSlidingOutLeft;
+    animation-fill-mode:forwards;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+@keyframes CarouselSlidingOutLeft{
+    0%{
+        left:0px;}
+    100%{
+        left:-100%;
+    }
+}
+.CarouselDiv>.CarouselSlidingInLeft{
+    animation-name: CarouselSlidingInLeft;
+    animation-fill-mode:forwards;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+@keyframes CarouselSlidingInLeft{
+    0%{
+        left:100%;
+    }
+    100%{
+        left:0%;
+    }
+}
+/*right*/
+.CarouselDiv>.CarouselSlidingOutRight{
+    animation-name: CarouselSlidingOutRight;
+    animation-fill-mode:forwards;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+@keyframes CarouselSlidingOutRight{
+    0%{
+        left:0px;}
+    100%{
+        left:100%;
+    }
+}
+.CarouselDiv>.CarouselSlidingInRight{
+    animation-name: CarouselSlidingInRight;
+    animation-fill-mode:forwards;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+@keyframes CarouselSlidingInRight{
+    0%{
+        left:-100%;
+    }
+    100%{
+        left:0%;
+    }
+}

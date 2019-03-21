@@ -385,6 +385,41 @@ function myReportValidity(event,message){
         input.setCustomValidity(message);
     }
 }
+function carouselControllerConstructor(id){
+     var controller={};
+     controller.currentImgId=0;
+     controller.imgs=document.querySelectorAll("#"+id+">img");
+     controller.imgs[0].style.display="block";
+     controller.btn=document.querySelectorAll("#"+id+" i");
+     controller.btn[0].addEventListener("click",()=>{
+       let imgNum=controller.imgs.length;
+       controller.imgs[controller.currentImgId].classList.add("CarouselSlidingOutLeft");
+       let nextID=(controller.currentImgId+1)%imgNum;
+       controller.imgs[nextID].style.display="block";
+       controller.imgs[nextID].classList.add("CarouselSlidingInLeft");
+       setTimeout(()=>{
+        controller.imgs[controller.currentImgId].classList.remove("CarouselSlidingOutLeft");
+        controller.imgs[nextID].classList.remove("CarouselSlidingInLeft");
+        controller.imgs[controller.currentImgId].style.display="none";
+           controller.currentImgId=nextID;
+       },500);
+     });
+     controller.btn[1].addEventListener("click",()=>{
+        let imgNum=controller.imgs.length;
+        controller.imgs[controller.currentImgId].classList.add("CarouselSlidingOutRight");
+        let nextID=(controller.currentImgId-1)%imgNum;
+        if(nextID==-1)nextID=imgNum-1;
+        controller.imgs[nextID].style.display="block";
+        controller.imgs[nextID].classList.add("CarouselSlidingInRight");
+        setTimeout(()=>{
+         controller.imgs[controller.currentImgId].classList.remove("CarouselSlidingOutRight");
+         controller.imgs[nextID].classList.remove("CarouselSlidingInRight");
+         controller.imgs[controller.currentImgId].style.display="none";
+            controller.currentImgId=nextID;
+        },500);
+      });
+     return controller;
+}
 function setAllCustomValidity(){
     let formDiv=document.querySelector(".testFormValidationDiv");
     formDiv.querySelector("input[name='name']").addEventListener("change",(event)=>{myReportValidity(event,"Must have name!!!");});
@@ -409,4 +444,10 @@ window.onload=function(){
     document.querySelector("#myEventTarget_2").addEventListener("click",myEventListener_1,true);
     document.querySelector("#myEventTarget_3").addEventListener("click",myEventListener_2,true);
     setAllCustomValidity();
+    //Modal
+    document.querySelectorAll(".ShowModalBtn,.CloseModalBtn").forEach((event)=>{event.addEventListener(
+        "click",
+        ()=>document.querySelector(".ModalBackground").classList.toggle("Modal_Background_displayed")
+    )});
+    let carouselController=carouselControllerConstructor("Carousel_1");
 }
