@@ -1,0 +1,52 @@
+body{
+    background: gray;
+}
+#vue_container_1{
+    display: flex;
+    flex-wrap: wrap;
+}
+.cardOut{
+    padding: 10px;
+    box-sizing:content-box;
+    flex:1 1 content;
+}
+.cardOut>.cardIn{
+    border-radius: 10px;
+    width: 100%;
+}
+.cardIn>img{
+    display: block;
+    margin: 0px auto;
+    width:90%;
+}
+.cardIn>h3{
+    margin: 3px;
+    text-align: center;
+}
+.vue_container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,auto));
+    grid-gap: 5px;
+    grid-auto-rows: auto;
+    align-items: center;
+    align-content: center
+}
+.vue_container>div{
+    padding: 10px;
+    box-sizing:content-box;
+    grid-area: auto;
+    background-color: mediumaquamarine;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.vue_container>div>*{
+    display: block;
+    text-align: center;
+    margin: 5px auto;
+    
+}
+.vue_container>div>img{
+    width:100%;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>Vue.js TestBed</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" media="(min-width:100px)" href="../styles/vueTestBed.css" />
+</head>
+<body>
+    <h1> Vue : Basic: v-text, v-text, v-bind</h1>
+<div id="vue_container_0"class="vue_container">
+    
+ <div>
+  <div >{{text_1}}</div>   <!--using v-text is the same,and using v-html="***" in target tag to insert html-->
+  <img v-bind:src="imgSrc" v-bind:title="imgTitle">
+ </div>
+</div>
+<h1> Vue : Create multiple elements: v-for</h1>
+<div id="vue_container_1" class="vue_container">
+     
+      <div class="cardOut" v-for="element in cardDataSet">
+        <div class="cardIn">
+            <h3>{{element.header}}</h3>
+            <img v-bind:src="element.imgData.imgSrc" v-bind:title="element.imgData.imgTitle">
+        </div>
+      </div>
+    </div>
+<h1> Vue : Event bind and conditional rendering: v-on and v-show,v-if,v-else-if,v-else</h1>
+    <div id="vue_container_2" class="vue_container">
+        <div>
+          <div>{{clickTime}}</div>
+          <button v-on:click="ClickEvent_1">ClickAndAdd</button>
+        </div>
+        <div>
+          <img src="../images/imgTest_1.jpg"v-show="isDislpay_img_1">
+          <!--look DOM, just display='none'-->
+          <button @click="ClickEvent_2">{{Btn_2_text}}</button><!--@event==v-on:click-->
+        </div>
+        <div>
+          <div v-if="div_3_ID==0">Content_1</div>
+          <div v-else-if="div_3_ID==1">Content_2</div>
+          <div v-else="div_3_ID==2">Content_3</div> 
+          <!--look DOM,only one of above exist,other removed-->
+          <button @click="ClickEvent_3">Click To Switch</button><!--@event==v-on:click-->
+        </div>
+        </div>
+
+        <h1> Vue : Input : v-model</h1>
+        <div id="vue_container_3" class="vue_container">
+            <div>
+              <div>{{Input_1}}</div>
+              <input type="text" v-model="Input_1">
+            </div>
+            <div>
+              <div>{{Input_Lazy}}</div>
+              <input type="text" v-model.lazy="Input_Lazy">
+            </div>
+            <div>
+              <div>{{Input_Number}}</div>
+              <input type="text" v-model.number="Input_Number">
+            </div>
+            <div>
+              <div>{{textAreaText}}</div>
+              <textarea v-model.lazy="textAreaText"></textarea>
+            </div>
+            <div>
+              <div>{{radioBtnText}}</div>
+            <div>
+               <!--note B is auto-selected-->
+              <input type="radio" value="A" v-model="radioBtnText"><label>A</label>
+              <input type="radio" value="B" v-model="radioBtnText"><label>B</label>
+              <input type="radio" value="C" v-model="radioBtnText"><label>C</label>
+            </div>
+            </div>
+            <div>
+              <div>{{checkBoxText}}</div>
+            <div>
+              <!--note checkBoxArray keep order-->
+              <input type="checkbox" value="D" v-model="checkBoxArray"><label>D</label>
+              <input type="checkbox" value="E" v-model="checkBoxArray"><label>E</label>
+              <input type="checkbox" value="F" v-model="checkBoxArray"><label>F</label>
+            </div>
+            </div>
+            </div>
+
+
+
+
+
+
+</body>
+<script src="../scripts/vue.js"></script>
+<script src="../scripts/vueTestBed.js"></script>
+</html>

@@ -1,11 +1,16 @@
 //ES6
+
 //import
 //can't work on local file systems,must be via network
+//error on firefox
+/* 
 import("./other.js").then(
    (module)=>{
       module._exportModule1.fn1();
    }
 );
+
+*/
 //class 
 class Person{
     constructor(__name){
@@ -37,6 +42,8 @@ class Student extends Person{
     }
   
 }
+//error on firefox
+/*
 class RabitProto{
     static counter=function(){
         let count=0;
@@ -53,15 +60,17 @@ class Rabit extends RabitProto{
         RabitProto.counter(true);
     }
 }
+let Rabit1=new Rabit();
+let Rabit2=new Rabit();
+let Rabit3=new Rabit();
+ */
 let Tom=new Person("Tom");
 console.log("Is Tom.__proto__===Person.prototype? :"+(Tom.__proto__===Person.prototype));//true
 let John=new Student("John",66666);
 console.log("Is John.__proto__===Student.prototype? :"+(John.__proto__===Student.prototype));//true
 console.log("Is John.__proto__===Person.prototype? :"+(John.__proto__===Person.prototype));//false
 console.log("Is John.__proto__.__proto__===Person.prototype? :"+(John.__proto__.__proto__===Person.prototype));//true
-let Rabit1=new Rabit();
-let Rabit2=new Rabit();
-let Rabit3=new Rabit();
+
 console.log(Tom._name);//Tom
 console.log(Tom.name);//Tom
 Tom.name=6666;
@@ -130,6 +139,7 @@ function *gen(count){
        }
     }
 }
+
 let itr2=gen(5);
 console.log(itr2.next());
 console.log(itr2.next());
@@ -429,6 +439,21 @@ function setAllCustomValidity(){
         radio.addEventListener("change",(event)=>{myReportValidity(event,"Must have name!!!");})
     });
 }
+function sendAjaxRequest(){
+  let url="./AJAX_Test";
+  let ajax=new XMLHttpRequest();
+  //var formData = new FormData();
+  //formData.append("username", "Hly");
+  ajax.onreadystatechange=(event)=>{
+     if(ajax.readyState==4&&ajax.status==200){
+        console.log(ajax);
+     }
+  }
+  ajax.open("POST",url,true);
+  ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  //note &
+  ajax.send("username=hly&id=6666");
+}
 window.onload=function(){
     console.log("Load js");
     var myEventListener_1=function(){
@@ -450,4 +475,5 @@ window.onload=function(){
         ()=>document.querySelector(".ModalBackground").classList.toggle("Modal_Background_displayed")
     )});
     let carouselController=carouselControllerConstructor("Carousel_1");
+    document.querySelector(".AjaxBtn_1").addEventListener("click",sendAjaxRequest);
 }

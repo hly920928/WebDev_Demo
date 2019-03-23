@@ -109,3 +109,6 @@ textarea{
     width:100%;
     padding: 0px;
 }
+body .btn-success{
+  background-color: rgb(52, 195, 195);
+}
