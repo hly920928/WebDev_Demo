@@ -70,7 +70,17 @@ window.onload=function(){
             Input_Number:"Input_Number",
             textAreaText:"textAreaText",
             radioBtnText:"B",
-            checkBoxArray:[]
+            
+            checkBoxArray:[],
+            selectMsg_1:"K",
+            selectList_1:[
+                {value:"G",
+                text:"G"},
+                {value:"H",
+                text:"H"},
+                {value:"K",
+                text:"K"}
+            ]
         },
         methods:{
             ClickEvent_1:function(){this.clickTime++;},
@@ -82,6 +92,18 @@ window.onload=function(){
                  this.Btn_2_text="Show Img";
                }},
             ClickEvent_3:function(){this.div_3_ID=(this.div_3_ID+1)%3;}
+        }
+      });
+      vueVM[4]=new Vue({
+        el:"#vue_container_4",
+        data:{
+            Msg_1:"Msg_1",
+            div_1_title:"div_1_title" 
+        },
+        filters:{
+            passFilter_1:function(input){
+                return input+" Filtered!";//note:filters have input
+            }
         }
       });
 }

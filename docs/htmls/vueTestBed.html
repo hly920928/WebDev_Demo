@@ -7,7 +7,7 @@
     <link rel="stylesheet" media="(min-width:100px)" href="../styles/vueTestBed.css" />
 </head>
 <body>
-    <h1> Vue : Basic: v-text, v-text, v-bind</h1>
+    <h1> Vue : Basic: v-text, v-html, v-bind</h1>
 <div id="vue_container_0"class="vue_container">
     
  <div>
@@ -16,7 +16,7 @@
  </div>
 </div>
 <h1> Vue : Create multiple elements: v-for</h1>
-<div id="vue_container_1" class="vue_container">
+<div id="vue_container_1" class="vue_container vue_container_flex">
      
       <div class="cardOut" v-for="element in cardDataSet">
         <div class="cardIn">
@@ -26,7 +26,7 @@
       </div>
     </div>
 <h1> Vue : Event bind and conditional rendering: v-on and v-show,v-if,v-else-if,v-else</h1>
-    <div id="vue_container_2" class="vue_container">
+    <div id="vue_container_2" class="vue_container vue_container_Grid">
         <div>
           <div>{{clickTime}}</div>
           <button v-on:click="ClickEvent_1">ClickAndAdd</button>
@@ -46,7 +46,7 @@
         </div>
 
         <h1> Vue : Input : v-model</h1>
-        <div id="vue_container_3" class="vue_container">
+        <div id="vue_container_3" class="vue_container vue_container_Grid">
             <div>
               <div>{{Input_1}}</div>
               <input type="text" v-model="Input_1">
@@ -73,16 +73,31 @@
             </div>
             </div>
             <div>
-              <div>{{checkBoxText}}</div>
+              <div>{{checkBoxArray}}</div>
             <div>
               <!--note checkBoxArray keep order-->
               <input type="checkbox" value="D" v-model="checkBoxArray"><label>D</label>
               <input type="checkbox" value="E" v-model="checkBoxArray"><label>E</label>
               <input type="checkbox" value="F" v-model="checkBoxArray"><label>F</label>
             </div>
+            
             </div>
+            <div>
+                <!--note checkBoxArray keep order-->
+                <div>{{selectMsg_1}}</div>
+                <select  v-model="selectMsg_1">
+                    <option v-for="item in selectList_1" v-bind:value="item.value">{{item.text}}</option>
+                </select>
+              </div>
             </div>
-
+            <h1> Vue : filters and Complete :</h1>
+            <div id="vue_container_4" class="vue_container vue_container_flex">
+                <div>
+                    <!--note data|passFilter_1 syntax-->
+                    <div v-bind:title="div_1_title|passFilter_1">{{Msg_1|passFilter_1}}</div>
+                    <input type="text" v-model="Msg_1">
+                  </div>
+            </div>
 
 
 
