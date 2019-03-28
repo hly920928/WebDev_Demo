@@ -97,8 +97,29 @@
                     <div v-bind:title="div_1_title|passFilter_1">{{Msg_1|passFilter_1}}</div>
                     <input type="text" v-model="Msg_1">
                   </div>
+                  <div>
+                    <div >{{Msg_2Computed}}</div>
+                    <input type="text" v-model="Msg_2">
+                  </div>
+                  <div>
+                    <div >P1</div>
+                    <input type="text" v-model="msg_P1">
+                    <div >P2</div>
+                    <input type="text" v-model="msg_P2">
+                    <div >P1+P2</div>
+                    <input type="text" v-model="msg_P1plusP2">
+                  </div>
             </div>
-
+            <h1> Vue : Control CSS ,Class and Style :</h1>
+            <div id="vue_container_5" class="vue_container vue_container_flex">
+                <div v-bind:class="class_1">ABC</div> <!--using data keyword-->
+                <div v-bind:class="[class_1,class_2]">EFG</div><!--using array-->
+                <div v-bind:class="{redText:isRedText_1,blueBG:isblueBG_1}">HIJK</div><!--using object to switch-->
+                <div v-bind:class="classObj_1">OPQ</div><!--using object linking in data to switch-->
+                <div v-bind:class="computed_classObj_1">RST</div><!--using object return by computed function-->
+                <div v-bind:style="{color:'violet',background:'yellow'}">UVW</div><!--using style object directly-->
+                <div v-bind:style="styleObject_1">UVW</div><!--using style object in data-->
+            </div>
 
 
 

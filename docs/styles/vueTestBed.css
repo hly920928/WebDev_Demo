@@ -50,3 +50,12 @@ body{
 .vue_container>div>img{
     width:100%;
 }
+.redText{
+    color:red;
+}
+.blueBG{
+    background-color:blue;
+}
+.vue_container>.blueBG{
+    background-color:blue;
+}

@@ -98,12 +98,55 @@ window.onload=function(){
         el:"#vue_container_4",
         data:{
             Msg_1:"Msg_1",
-            div_1_title:"div_1_title" 
+            div_1_title:"div_1_title",
+            Msg_2:"Msg_2",
+            msg_P1:"ABC",
+            msg_P2:"EFG"
         },
         filters:{
-            passFilter_1:function(input){
-                return input+" Filtered!";//note:filters have input
+            passFilter_1:function(input){//note:filters have input
+                return input+" Filtered!";
+            }
+        },
+        computed:{//note:computed have not input
+            Msg_2Computed:function(){
+                return this.Msg_2+" Computed!";
+            },
+            msg_P1plusP2:{//reflect and proxy,implement bi-direction linking
+               get:function(){
+                   return this.msg_P1+' '+this.msg_P2;
+               },
+               set:function(v){// note:have input
+                   let data=v.split(' ');//not " "
+                   this.msg_P1=data[0];
+                   this.msg_P2=data[1];
+               }
             }
         }
       });
+      vueVM[5]=new Vue({
+        el:"#vue_container_5",
+        data:{
+            class_1:"redText",
+            class_2:"blueBG",
+            isRedText_1:false,
+            isblueBG_1:true,
+            classObj_1:{
+                redText:true,
+                blueBG:false,
+            },
+            styleObject_1:{
+              color:'yellow',
+              background:'violet'
+            }
+        },
+        computed:{
+            computed_classObj_1:function(){
+                 return {
+                    blueBG:true,
+                    redText:true
+                }
+            }  
+        }
+    });
 }
