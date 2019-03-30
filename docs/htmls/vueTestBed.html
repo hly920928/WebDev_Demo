@@ -119,12 +119,17 @@
                 <div v-bind:class="computed_classObj_1">RST</div><!--using object return by computed function-->
                 <div v-bind:style="{color:'violet',background:'yellow'}">UVW</div><!--using style object directly-->
                 <div v-bind:style="styleObject_1">UVW</div><!--using style object in data-->
+                <h2>Vue : General Component making I :Text Input with Limit</h2>
+               <div class="textInput_I">
+                <textarea  v-model="textInput_I_computed"  v-bind:class="textInput_I.classList"></textarea>
+                <div>{{textInput_I.remain}}/{{textInput_I.limit}}</div>
+               </div>
             </div>
-
+            
 
 
 
 </body>
-<script src="../scripts/vue.js"></script>
+<script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>
 </html>

@@ -121,7 +121,8 @@ window.onload=function(){
                    this.msg_P1=data[0];
                    this.msg_P2=data[1];
                }
-            }
+            },
+          
         }
       });
       vueVM[5]=new Vue({
@@ -138,6 +139,12 @@ window.onload=function(){
             styleObject_1:{
               color:'yellow',
               background:'violet'
+            },
+            textInput_I:{
+                msg:"",
+                limit:50,
+                remain:0,
+                classList:[]
             }
         },
         computed:{
@@ -146,7 +153,24 @@ window.onload=function(){
                     blueBG:true,
                     redText:true
                 }
-            }  
+            } ,
+            textInput_I_computed:{
+                get:function(){return this.textInput_I.msg;},
+                set:function(v){
+                    if(v.length<50){
+                        this.textInput_I.msg=v;
+                        this.textInput_I.remain=this.textInput_I.limit-v.length;
+                        let id=this.textInput_I.classList.indexOf("redBorder");
+                         if(id!=-1){
+                            this.textInput_I.classList.splice(id,1);
+                         }
+                    }else{
+                        this.textInput_I.remain=0;
+                        this.textInput_I.msg=v.substr(0,50);
+                        this.textInput_I.classList.push("redBorder");
+                    }
+                }
+            }
         }
     });
 }
