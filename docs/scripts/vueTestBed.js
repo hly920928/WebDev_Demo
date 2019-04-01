@@ -62,7 +62,7 @@ window.onload=function(){
             ClickEvent_3:function(){this.div_3_ID=(this.div_3_ID+1)%3;}
         }
       });
-      vueVM[3]=new Vue({
+    vueVM[3]=new Vue({
         el:"#vue_container_3",
         data:{
             Input_1:"Input 1",
@@ -94,7 +94,7 @@ window.onload=function(){
             ClickEvent_3:function(){this.div_3_ID=(this.div_3_ID+1)%3;}
         }
       });
-      vueVM[4]=new Vue({
+    vueVM[4]=new Vue({
         el:"#vue_container_4",
         data:{
             Msg_1:"Msg_1",
@@ -125,7 +125,7 @@ window.onload=function(){
           
         }
       });
-      vueVM[5]=new Vue({
+    vueVM[5]=new Vue({
         el:"#vue_container_5",
         data:{
             class_1:"redText",
@@ -173,4 +173,144 @@ window.onload=function(){
             }
         }
     });
+    //global component
+    Vue.component(
+        "comp_1",//component name,using small case to avoid error
+       {
+        template:"#template_comp_1",
+        data:function(){
+            return {
+                msg_1:"_msg_1",
+                msg_2:"_msg_2 "+this.prop_1
+            };
+        },
+        props:["prop_1"],//prop name declare here
+        methods:{
+           
+        }
+       }
+
+
+    );
+
+    vueVM[6]=new Vue({
+        el:"#vue_container_6",
+        data:{},
+        filters:{},
+        computed:{},
+    });
+    vueVM[7]=new Vue({
+        el:"#vue_container_7",
+        components:{
+        comp_1_local:{
+            template:"#template_comp_1",
+            data:function(){
+            return {
+                msg_1:"_msg_1_Local",
+                msg_2:"_msg_2_Local"
+            };
+            },
+            props:["prop_1"],
+            methods:{}
+            }
+        },
+        data:{},
+        filters:{},
+        computed:{},
+    });
+    vueVM[8]=new Vue({
+        el:"#vue_container_8",
+        data:{
+          data_prop_1:"data_prop_in_VM_data"
+
+        }
+    });
+    Vue.component(
+        "component_with_input_1",//component name,using small case to avoid error
+       {
+        template:"#template_component_with_input_1",
+        data:function(){
+            return {
+                msg_in_component_1:"msg_in_component_1_send_In",
+                msg_in_component_2:"msg_in_component_2_send_In"
+            };
+        },
+        props:[],//prop name declare here
+        methods:{
+            sendOut_1:function(){
+                this.$emit("reload",this.msg_in_component_1);
+            },
+            sendOut_2:function(){
+                this.$emit("reload",this.msg_in_component_1,this.msg_in_component_2);
+            }
+        }
+       }
+
+
+    );
+    vueVM[9]=new Vue({
+        el:"#vue_container_9",
+        data:{
+          data_prop_2:"data_prop_2_in_VM_data",
+          msg_VM_1:"msg_VM_1_OK",
+          msg_VM_2:"msg_VM_2_OK",
+          msg_VM_3:"msg_VM_3_OK",
+          msg_4:"msg_4"
+        },
+        methods:{//different with computed, not v-model with DOM,must call by event
+            receiveData_I:function(v1,v2){
+                this.msg_VM_2=v1;
+                this.msg_VM_3=v2;
+            },
+            _alert:()=>{
+                alert("click Component");
+              }
+        }
+    });
+    Vue.component(
+        "component_calculator_unit",//component name,using small case to avoid error
+       {
+        template:"#calculatorUnit",
+        data:function(){
+            return {
+                value_in_data:this.value_in_props
+            };
+        },
+        props:["label","value_in_props"],//prop name declare here
+        methods:{
+            sendOut:function(event){
+                this.$emit("input_event",Number(event.currentTarget.value));
+            }
+        }
+       });
+       Vue.component(
+        "component_calculator_unit_v1",//component name,using small case to avoid error
+       {
+        template:"#calculatorUnit_1",
+        data:function(){
+            return {};
+        },
+        props:["label","value"],//prop name declare here
+        methods:{
+            send:function(v){
+                this.$emit("input",Number(v));
+
+            }}
+        
+        });
+       vueVM[10]=new Vue({
+        el:"#vue_container_10",
+        data:{
+            price:10,
+            shipping:20,
+            discount:5
+        },
+        computed:{
+            computeTotal:function(){
+                return this.price+this.shipping-this.discount;
+            }
+        }
+       }
+    );
+    
 }

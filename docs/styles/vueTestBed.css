@@ -40,11 +40,14 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-basis: content; 
+    margin:  3px;
 }
 .vue_container>div>*{
     display: block;
     text-align: center;
     margin: 5px auto;
+    flex-basis: content; 
     
 }
 .vue_container>div>img{
@@ -62,3 +65,30 @@ body{
 .redBorder{
     border-color:red;
 }
+.vue_component{
+    background-color: paleturquoise;
+    width: 90%;
+}
+.cal_cell{
+    box-sizing: border-box;
+    width: 100%;
+}
+.cal_cell>*{
+    display: block;
+}
+.cal_cell label{
+    font-size: 0.7em;
+    text-align: left;
+}
+.cal_cell input{
+    width: 100%;
+}
+.cal_cell>*:first-of-type{
+    width: 25%;
+   float: left;
+   text-align: left;
+}
+.cal_cell>*:last-of-type{
+    float: right;
+    width: 75%;
+ }

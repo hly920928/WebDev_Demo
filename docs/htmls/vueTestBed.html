@@ -119,16 +119,103 @@
                 <div v-bind:class="computed_classObj_1">RST</div><!--using object return by computed function-->
                 <div v-bind:style="{color:'violet',background:'yellow'}">UVW</div><!--using style object directly-->
                 <div v-bind:style="styleObject_1">UVW</div><!--using style object in data-->
-                <h2>Vue : General Component making I :Text Input with Limit</h2>
-               <div class="textInput_I">
-                <textarea  v-model="textInput_I_computed"  v-bind:class="textInput_I.classList"></textarea>
-                <div>{{textInput_I.remain}}/{{textInput_I.limit}}</div>
+               <div>
+                <h4>Vue : General Widget Making I :Text Input with Limit</h4>
+                <div class="textInput_I">
+                 <textarea  v-model="textInput_I_computed"  v-bind:class="textInput_I.classList"></textarea>
+                 <div>{{textInput_I.remain}}/{{textInput_I.limit}}</div>
+                </div>
                </div>
             </div>
-            
+            <template id="template_comp_1">
+             <div class="vue_component comp_1"><!--must have div after <template>-->
+                  <h6>comp_1</h6>
+                  <div>{{msg_1}}</div>
+                  <div>{{msg_2}}</div>
+                  <div>{{prop_1}}</div>
+             </div>
 
 
+            </template>
+            <h1>Vue: Component Basic</h1>
+            <div id="vue_container_6" class="vue_container vue_container_flex">
+                <div>
+                    <h3>Global Component</h3>
+                    <comp_1 ></comp_1>  
+                    <!--<comp_1_local></comp_1_local>  -->            <!--local Component not working-->     
+                </div>
+                
+            </div>
+            <h5>Local Component</h5>
+            <div id="vue_container_7" class="vue_container vue_container_flex">
+          
+                    <comp_1></comp_1> <!--Global Component still working-->
+                    <comp_1_local></comp_1_local> 
+                                   
+      
+            </div>
+            <h1>Vue: Component :Sending In data using Props</h1>
+            <div id="vue_container_8" class="vue_container vue_container_flex">
+                <div>
+                    <h3>prop set In tag</h3>
+                    <comp_1 prop_1="prop set In tag"></comp_1>   
+                   
+                </div>
+                <div>
+                  <h3>prop using v-bind</h3>
+                  <comp_1 v-bind:prop_1="data_prop_1"></comp_1>   
+                 
+              </div>
+               
+            </div>
+            <h1>Vue: Component :Sending Out data Props</h1>
+            <template id="template_component_with_input_1">
+                <div class="vue_component comp_2">
+                  <h4>Component_with_Input</h4>
+                  <input type="text" v-model="msg_in_component_1">
+                  <input type="text" v-model="msg_in_component_2">
+                  <button v-on:click="sendOut_1">Send_I</button>
+                  <button v-on:click="sendOut_2">Send_II</button>
+                </div>
+           </template>
+            <div id="vue_container_9" class="vue_container vue_container_flex">
+              
+                  <div>{{msg_VM_1}}</div>
+                  <div>{{msg_VM_2}}</div>
+                  <div>{{msg_VM_3}}</div>
+                  <component_with_input_1 v-on:reload="msg_VM_1=arguments[0]"><!--Send by inline method,only one value passed--></component_with_input_1>   
+                  <component_with_input_1 v-on:reload="receiveData_I"><!--Send by calling method--></component_with_input_1>   
+                  <comp_1 v-on:click="_alert"></comp_1> <!--event can't be trigger-->
+                  <comp_1 v-on:click.native="_alert"></comp_1><!--event can be trigger-->
+                  <div>
+                    <h3>Inplement v-model using v-bind and v-on</h3>
+                    <div>{{msg_4}}</div>
+                    <input type="text" v-bind:value="msg_4" v-on:input="msg_4=$event.target.value">
+                  </div>
+            </div>
+            <h1>Vue: General Widget Making:Using Component :Cost Calculator</h1>
+            <template id="calculatorUnit">
+              <div class="cal_cell">
+                 <div> <label>{{label}}</label></div>
+                 <div> <input type="number" v-bind:value="value_in_data" v-on:change="sendOut"></div>
+              </div>
+            </template>
+              <!--Standard Naming-->
+              <template id="calculatorUnit_1">
+                  <div class="cal_cell">
+                     <div> <label>{{label}}</label></div>
+                     <div> <input type="number" v-bind:value="value" v-on:input="send($event.target.value)"></div>
+                  </div>
+                </template>
+            <div id="vue_container_10" class="vue_container vue_container_flex">
+                 <div>
+                    <component_calculator_unit label="Price" v-bind:value_in_props="price"  v-on:input_event="price=arguments[0]"></component_calculator_unit>
+                   <component_calculator_unit_v1 label="Shipping"  v-bind:value="shipping"  v-on:input="shipping=arguments[0]"></component_calculator_unit_v1>
+                   <component_calculator_unit_v1 label="Discount"  v-model="discount"></component_calculator_unit_v1><!--using v-model as a shortcut-->
+                   <div>Total : <span>{{computeTotal}}</span></div>
+                 </div>
 
+            </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>

@@ -1,0 +1,100 @@
+div{
+    box-sizing: border-box;
+}
+#myBody{
+    background-color: gray;
+}
+.myHeader{
+    position: absolute;
+    width: 100%;
+    height: 3vh;
+    background-color: rgb(197, 197, 197);
+
+}
+.myfooter{
+    position: absolute;
+    width: 100%;
+    height:3vh;
+    top:97vh;
+    background-color:palegreen;
+}
+.myMain{
+    position: absolute;
+    /*top:3vh;*/
+    width: 100%;
+    height:100vh;
+    display: flex;
+}
+
+.mySideBar,.myContent{
+    height:100%;
+    box-sizing: border-box;
+    margin:0px;
+    overflow:auto;
+}
+
+.mySideBar{
+    flex:0 1 200px;
+    background-color: rgb(34, 34, 34);
+    
+   
+}
+.mySideBar>div{
+    padding:5vh 3px;
+    text-align: center;
+    margin: 4px auto;
+    color:white;
+    font-size: 1.2em;
+    border-top: 1px solid  rgb(199, 199, 199)
+}
+.myContent{
+    flex:1 1 800px;
+    background-color: snow;
+}
+.myContent>div{
+    width:90%;
+    margin: 2vh auto;
+}
+.myContent>div>div:first-of-type{
+   
+    border-bottom: 3px gray solid
+}
+.myContent>div>h1{
+    font-size: 3em;
+}
+.contentDiv{
+    width:80%;
+    margin: 30px auto;
+    min-height:300px;
+    background-color:lightskyblue; 
+}
+.classCard{
+    background-color: rgb(251, 244, 233);
+    height:18vh;
+    width: 90%;
+    margin: 10px auto;
+}
+.classCard>*{
+    float: left;
+    display: block;
+   
+}
+.classCard>div:first-of-type{
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+}
+.classCard>div:first-of-type>img{
+    height: 100%;
+}
+.classCard>.info{
+    width:70%;
+    padding: 2vh 1vw;
+}
+.classCard>.info>a{
+    font-size: 2em;
+}
+.classCard>.info>div{
+    padding: 5% 3%;
+    font-size:1.6em;
+}
