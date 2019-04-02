@@ -209,13 +209,44 @@
                 </template>
             <div id="vue_container_10" class="vue_container vue_container_flex">
                  <div>
-                    <component_calculator_unit label="Price" v-bind:value_in_props="price"  v-on:input_event="price=arguments[0]"></component_calculator_unit>
+                   <component_calculator_unit label="Price" v-bind:value_in_props="price"  v-on:input_event="price=arguments[0]"></component_calculator_unit>
                    <component_calculator_unit_v1 label="Shipping"  v-bind:value="shipping"  v-on:input="shipping=arguments[0]"></component_calculator_unit_v1>
                    <component_calculator_unit_v1 label="Discount"  v-model="discount"></component_calculator_unit_v1><!--using v-model as a shortcut-->
                    <div>Total : <span>{{computeTotal}}</span></div>
                  </div>
 
             </div>
+            <h1>Vue: Insert Slot into Component</h1>
+            <template id="slot_test">
+              <div class="slot_test_div">
+                <slot name="slot_1"></slot>
+                 <div>Div_1 in Component</div>
+                 <div>Div_2 in Component</div>
+                 <slot name="slot_2"></slot>
+              </div>
+            </template>
+            <div id="vue_container_11" class="vue_container vue_container_flex">
+               <component_slot_test>
+                 <h5 slot="slot_2">slot_2_msg</h5>
+                 <h5 slot="slot_1">slot_1_msg</h5>
+              </component_slot_test>
+            </div>
+            <h1>Vue: Sending Between Sibling Component by using center event bus</h1>
+            <template id="comp_input_1">
+                <div class="comp_input_1_div">
+                   <input type="text" v-model="value">
+                   <button v-on:click="send">Send</button>
+                </div>
+              </template>
+              <template id="comp_display_1">
+                  <div class="comp_display_1_div">
+                    {{value}}
+                  </div>
+                </template>
+                <div id="vue_container_12" class="vue_container vue_container_flex">
+                 <component_input_1></component_input_1> 
+                <component_display_1></component_display_1>
+                    </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>

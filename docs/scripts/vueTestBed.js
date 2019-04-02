@@ -283,7 +283,7 @@ window.onload=function(){
             }
         }
        });
-       Vue.component(
+    Vue.component(
         "component_calculator_unit_v1",//component name,using small case to avoid error
        {
         template:"#calculatorUnit_1",
@@ -298,7 +298,7 @@ window.onload=function(){
             }}
         
         });
-       vueVM[10]=new Vue({
+    vueVM[10]=new Vue({
         el:"#vue_container_10",
         data:{
             price:10,
@@ -312,5 +312,73 @@ window.onload=function(){
         }
        }
     );
-    
+    Vue.component(
+        "component_slot_test",//component name,using small case to avoid error
+       {
+        template:"#slot_test",
+        data:function(){
+            return {};
+        },
+        props:[],//prop name declare here
+        methods:{}
+        }
+        );
+     
+        vueVM[11]=new Vue({
+            el:"#vue_container_11",
+            data:{
+                price:10,
+                shipping:20,
+                discount:5
+            },
+            computed:{
+                computeTotal:function(){
+                    return this.price+this.shipping-this.discount;
+                }
+            }
+           }
+        );
+        let bus_1=new Vue();
+        Vue.component(
+                "component_input_1",//component name,using small case to avoid error
+               {
+                template:"#comp_input_1",
+                data:function(){
+                    return {value:"Default_In_Input"};
+                },
+                props:[],//prop name declare here
+                methods:{
+                    send:function(){
+                        this.$emit("send",this.value);
+                        bus_1.$emit("send",this.value);
+                    }
+                }
+                }
+                ); 
+        Vue.component(
+                    "component_display_1",//component name,using small case to avoid error
+                   {
+                    template:"#comp_display_1",
+                    data:function(){
+                        return {value:"Default_In_Display"};
+                    },
+                    props:[],//prop name declare here
+                    methods:{
+                    },
+                    created:function(){
+                        let component=this;
+                        //let value=this.value //error this.value is a string ,value is a copy,not a reference
+                        bus_1.$on("send",function(v){
+                            component.value=v;
+                        });
+                    }
+                    }
+                    ); 
+    vueVM[12]=new Vue({
+                        el:"#vue_container_12",
+                        data:{
+                        },
+                        computed:{}
+                       }
+                    );
 }
