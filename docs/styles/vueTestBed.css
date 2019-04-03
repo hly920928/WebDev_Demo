@@ -40,18 +40,23 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-basis: content; 
+    align-self: center;
+    flex:1 1 20%;
+    max-width: 400px;
     margin:  3px;
 }
 .vue_container>div>*{
     display: block;
     text-align: center;
     margin: 5px auto;
-    flex-basis: content; 
-    
+    flex:1 1 25px;
+    align-self: center;
 }
 .vue_container>div>img{
     width:100%;
+}
+.vue_container>div>button{
+    height:10px;
 }
 .redText{
     color:red;
@@ -92,3 +97,145 @@ body{
     float: right;
     width: 75%;
  }
+ #vue_container_13{
+     display: block;
+ }
+ #vue_container_13>div{
+ 
+     max-width: 1200px;
+     display: block;
+ 
+     margin: 0px auto;
+     background-color: rgb(167, 207, 194);
+ }
+ .vue_container>div>.iconDiv{
+     margin: 0px;
+     height: 1.5vw;
+    
+   /*  background-color: peru;*/
+ }
+ .vue_container>div>.iconDiv> i{
+     font-size: 2em;
+     display: block;
+     float: left;
+ }
+ .vue_container>div>.iconDiv> i:hover{
+   color:whitesmoke;
+}
+ #vue_container_13 .reading_module{
+     width:95%;
+     text-align: left;
+ }
+ .reading_module .title{
+    text-align: center;
+    margin: 0 auto 1vh auto;
+ }
+ .reading_module .meta{
+    text-align: right;
+ }
+ .reading_module>.article_text{
+  text-indent: 2vw;
+  border-width: 5px;
+  border-style: solid;
+  height: 50%;
+  border-color: rgb(218, 169, 78);
+  background-color: rgb(255, 252, 249);
+ }
+ .reading_module>.article_text[data-category="Tech"]{
+    
+    border-color:rgb(148, 118, 61);
+   }
+  
+   .reading_module>.article_text[data-category="Web"]{
+    
+    border-color:rgb(117, 164, 185);
+   }
+   .reading_module>.article_text[data-category="Science"]{
+    
+    border-color:rgb(123, 61, 148);
+   }
+   .reading_module>.article_text[data-category="Sports"]{
+    
+    border-color:rgb(61, 148, 126);
+   }
+ .reading_module>.article_text+*{
+    height: 20%;
+ }
+ .reading_module>.meta>.category_span{
+     box-sizing: border-box;
+     margin:3px;
+     width:100px;
+     text-align: center;
+    font-size: 0.9em;
+    border-radius: 5px;
+    float: right;
+    border-width: 2px; 
+    border-style: solid;
+    float:left;
+   }
+.reading_module>.meta>.category_span[data-category="Tech"]{
+    background-color: rgb(218, 169, 78);
+    border-color:rgb(148, 118, 61);
+   }
+  
+.reading_module>.meta>.category_span[data-category="Web"]{
+    background-color: rgb(78, 155, 218);
+    border-color:rgb(117, 164, 185);
+   }
+.reading_module>.meta>.category_span[data-category="Science"]{
+    background-color: rgb(162, 78, 218);
+    border-color:rgb(123, 61, 148);
+   }
+.reading_module>.meta>.category_span[data-category="Sports"]{
+    background-color: rgb(78, 218, 171);
+    border-color:rgb(61, 148, 126);
+   }
+   .reading_module>.meta>.category_span[data-category="News"]{
+    background-color: rgb(60, 70, 151);
+    border-color:rgb(80, 87, 148);
+    color:white;
+   }
+#vue_container_13 .editing_mode>h4{
+    display:  block;
+    width:100%;
+    text-align: center;
+}
+#vue_container_13 .editing_mode>textarea{
+ 
+    width:90%;
+    margin: 3px auto;
+    height: 30vh;
+    text-align: left;
+    font-size: 1.5em;
+}
+
+#vue_container_13 .input_form_1{
+    width:80%;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-auto-rows: 2vh;
+}
+.input_form_1>*{
+    line-height: 2vh;
+    font-size: 1.2em;
+}
+.input_form_1>label{
+    grid-area: span 1/ span 1;
+}
+
+.input_form_1>.line_1_display{
+    grid-area: span 1/ span 1;
+}
+.input_form_1>.line_1_input{
+    grid-area: span 1/ span 4;
+}
+.input_form_1>.line_2_input{
+    grid-area: span 1/span 5;
+}
+.input_form_1>.line_3_input{
+    grid-area:span 1/ span 2;
+}
+.input_form_1 option{
+    font-size: 1.5em;
+}

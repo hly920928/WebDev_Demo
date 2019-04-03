@@ -1,4 +1,21 @@
 let vueVM=[];
+function convertToTwoDigit(v){
+    let ans=Number(v)+1;
+    if(ans<10)ans="0"+ans;
+    else ans=String(ans);
+    return ans;
+}
+function getFormatedDate(){
+    let nowDate=new Date();
+    let ans=String(nowDate.getFullYear())+":";
+    
+    ans=ans+convertToTwoDigit(nowDate.getMonth())+":";
+    ans=ans+convertToTwoDigit(nowDate.getDay())+"#";
+    ans=ans+convertToTwoDigit(nowDate.getHours())+":";
+    ans=ans+convertToTwoDigit(nowDate.getMinutes())+":";
+    ans=ans+convertToTwoDigit(nowDate.getHours());
+    return ans;
+}
 window.onload=function(){
     console.log("vueDemo.js loaded!");
     vueVM[0]=new Vue({
@@ -379,6 +396,70 @@ window.onload=function(){
                         data:{
                         },
                         computed:{}
+                       }
+                    );
+
+        Vue.component(
+                        "readingmode_comp",//component name,using lower case to avoid error
+                       {
+                        template:"#reading_mode",
+                        data:function(){
+                            return {};
+                        },
+                        props:["title","author","date","category"],//prop name declare here
+                        methods:{
+                        },
+                        created:function(){}
+                        }
+                        ); 
+    
+    vueVM[13]=new Vue({
+                        el:"#vue_container_13",
+                        data:{
+                            status:"view",
+                            title_input:{
+                                text:"article title",
+                                limit:50,
+                                getRemain:function(){
+                                    return this.limit-this.text.length;
+                                },
+                                
+                                isBorderRed:function(){
+                                    return this.getRemain()==0;
+                                }
+                            },
+                            author:"article author",
+                            article_main:"The killdeer (Charadrius vociferus) is a large plover found in the Americas. It was described and given its current scientific name in 1758 by Carl Linnaeus in the 10th edition of his Systema Naturae. Subspecies breed from southeastern Alaska and southern Canada to Mexico, in the West Indies, and in and around Peru. The non-breeding habitat includes coastal wetlands, beach habitats, and coastal fields. Although it is a shorebird, it does not necessarily nest close to water. Both parents incubate the young for 22 to 28 days on average. The killdeer primarily feeds on insects, although other invertebrates and seeds are eaten. It forages almost exclusively in fields, especially those with short vegetation and with cattle and standing water. It has a range of responses to predation by birds and mammals, including charging at intruders, which can be fatal for the killdeer. The species is declining but not yet threatened.",
+                            date:getFormatedDate(),
+                            category:"Tech",
+                            category_color:"teal",
+                            category_list:["Tech","Web","News","Science","Sports"]
+                        },
+                        computed:{
+                            title_input_computed:{
+                                get:function(){
+                                    return this.title_input.text; 
+                                },
+                                set:function(v){
+                                        if(v.length>50){
+                                            v=v.substr(0,50);
+                                        }
+                                        this.title_input.text=v;
+                                        return this.title_input.text;
+                                    },
+
+                                }
+                            },
+                        methods:{
+                            switch_mode:function(){
+                                     if(this.status=="view"){
+                                        this.status="edit";
+                                     }else{
+                                        this.status="view";
+                                     }
+                                     this.date=getFormatedDate();
+                            }
+                        }
                        }
                     );
 }

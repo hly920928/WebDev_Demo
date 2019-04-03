@@ -4,7 +4,8 @@
 <head>
     <title>Vue.js TestBed</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <link rel="stylesheet" media="(min-width:100px)" href="../styles/vueTestBed.css" />
+    <link rel="stylesheet" media="" href="../styles/vueTestBed.css" />
+    <link rel="stylesheet" media="" href="../styles/fontawesome_all.min.css" />
 </head>
 <body>
     <h1> Vue : Basic: v-text, v-html, v-bind</h1>
@@ -193,7 +194,7 @@
                     <input type="text" v-bind:value="msg_4" v-on:input="msg_4=$event.target.value">
                   </div>
             </div>
-            <h1>Vue: General Widget Making:Using Component :Cost Calculator</h1>
+            <h1>Vue: General Widget Making : Using Component :Cost Calculator</h1>
             <template id="calculatorUnit">
               <div class="cal_cell">
                  <div> <label>{{label}}</label></div>
@@ -246,6 +247,63 @@
                 <div id="vue_container_12" class="vue_container vue_container_flex">
                  <component_input_1></component_input_1> 
                 <component_display_1></component_display_1>
+                    </div>
+                    <template id="reading_mode">
+                    <div  class="reading_module">
+                        <h2 class="title">{{title}}</h2>
+                        <slot name="article"></slot>
+                        <div class="meta">
+                          <span>  Created by <span>{{author}}</span>, last edited at <span>{{date}}</span></span>
+                        
+                          <span class="category_span" v-bind:data-category="category">{{category}}</span>
+                        </div>
+                       
+                    </div>
+                    </template>
+                    <h1>Vue: Mini-project : News Viewing & Editing App</h1>
+                    <div id="vue_container_13" class="vue_container">
+                          <div v-if="status=='view'">
+                             
+                            <div class="iconDiv">
+                                <i class="fas fa-edit myIcon" v-on:click="switch_mode"></i>
+                                
+                            </div>
+                            <readingmode_comp 
+                            v-bind:title="title_input.text" 
+                            v-bind:author="author" 
+                            v-bind:date="date"
+                           :category="category" 
+                            >
+                        <slot slot="article">
+                          <div  v-bind:data-category="category" class="article_text"  >
+                            {{article_main}}
+                          </div>
+                        </slot>
+                        </readingmode_comp>
+                          </div>
+                          <div class="editing_mode"v-if="status=='edit'"> 
+                            <div class="iconDiv">
+                                <i class="far fa-save myIcon"  v-on:click="switch_mode"></i>
+                          </div>
+                         <div class="input_form_1">
+                                <label class="line_1_title">Title</label>
+                          
+                                <input class="line_1_input" v-bind:class="{redBorder:title_input.isBorderRed()}"type="text" v-model="title_input_computed">  <!--using v-model=computed ,avoiding scoping issue-->
+                                <div class="line_1_display">{{title_input.getRemain()}}/{{title_input.limit}}</div>
+                                
+                                <label class="line_2_title">Author</label>
+                                <input class="line_2_input" type="text"v-model="author">
+                                <label class="line_3_title">Category</label>
+                                <select  class="line_3_input" v-model="category">
+                                    <option v-for="item in category_list" v-bind:value="item">{{item}}</option>
+                                </select>
+                             
+                              </div>
+                              <h4>Article Content</h4>
+                              <textarea v-model="article_main"></textarea>
+                            </div>
+                         
+                        </div>
                     </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
