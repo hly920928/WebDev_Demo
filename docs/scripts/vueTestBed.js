@@ -462,4 +462,88 @@ window.onload=function(){
                         }
                        }
                     );
+    Vue.component(
+                        "component_input_sync",//component name,using small case to avoid error
+                       {
+                        template:"#comp_input_sync",
+                        data:function(){
+                            return {msg_sent:"msg_sent_default"};
+                        },
+                        props:["my_prop_1"],//using .sync, prop can be any name,not just "value" with v-model
+                        methods:{
+                            sendOutSync:function(){}//using a void function to avoid error
+                        },
+                        created:function(){
+                            let comp=this;
+                            comp.sendOutSync=function(event){// binding function in creating time ,using this closure ,avoid "this" problem
+                                comp.msg_sent="msg_sent "+event.currentTarget.value;
+                                comp.$emit("update:my_prop_1",event.currentTarget.value);////using .sync,custom event must be update:propname
+                            }
+                        }
+                        }
+                        ); 
+    Vue.component(
+                            "component_with_model",//component name,using small case to avoid error
+                           {
+                            template:"#comp_input_with_model",
+                            model:{
+                                prop:"my_prop_2",
+                                event:"update_my_prop_2"
+                            },//using model to bind to model (with any name,not just "value" and "input")
+                            data:function(){
+                                return {};
+                            },
+                            props:["my_prop_2"],//using .sync, prop can be any name,not just "value" with v-model
+                            methods:{
+                                sendOutSync:function(){}//using a void function to avoid error
+                            },
+                            created:function(){
+                                let comp=this;
+                                comp.sendOutSync=function(event){// binding function in creating time ,using this closure ,avoid "this" problem
+                                    comp.msg_sent="msg_sent "+event.currentTarget.value;
+                                    comp.$emit("update_my_prop_2",event.currentTarget.value);////using .sync,custom event must be update:propname
+                                }
+                            }
+                            }
+                            ); 
+    vueVM[14]=new Vue({
+            el:"#vue_container_14",
+            data:{
+                msg_1:"msg_1_in_Data",
+                msg_2:"msg_2_in_Data"
+            }
+            
+        });
+        Vue.component(
+            "componnent_with_scoped_slots",//component name,using small case to avoid error
+           {
+            template:"#comp_with_scoped_slots",
+            data:function(){
+                return {data_in_components_1:"data_in_components_1_output"};
+            },
+            props:[]//using .sync, prop can be any name,not just "value" with v-model
+         
+            }); 
+        Vue.component(
+                "componcomp_with_multiple_scoped_slots",//component name,using small case to avoid error
+               {
+                template:"#comp_with_multiple_scoped_slots",
+                data:function(){
+                    return {};
+                },
+                props:["item_list"]//using .sync, prop can be any name,not just "value" with v-model
+             
+                }); 
+        vueVM[15]=new Vue({
+            el:"#vue_container_15",
+            data:{
+                item_list_in_VM:[
+                    {item_v1:"v1",item_v1_v:"v1_v"},
+                    {item_v1:"v2",item_v1_v:"v2_v"},
+                    {item_v1:"v3",item_v1_v:"v3_v"},
+                    
+                ]
+            }
+                    
+        });
 }

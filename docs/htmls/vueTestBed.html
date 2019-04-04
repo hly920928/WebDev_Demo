@@ -304,6 +304,64 @@
                             </div>
                          
                         </div>
+                    <h1>Vue: New Contents in Vue 2.3</h1>
+                    <template id="comp_input_sync">
+                        <div class="comp_input_sync_div">
+                          <div>{{msg_sent}}</div>
+                           <input type="text" v-bind:value="my_prop_1" v-on:input="sendOutSync">
+                        </div> </template>
+                        <template id="comp_input_with_model">
+                            <div class="comp_input_with_model_div">
+                               <input type="text" v-bind:value="my_prop_2" v-on:input="sendOutSync">
+                            </div>
+                      </template>
+                        <div id="vue_container_14" class="vue_container vue_container_flex">
+                             <div>
+                               <h4>Using .Sync to Linking Component</h4>
+                               <component_input_sync v-bind:my_prop_1.sync= "msg_1"><!--using sync to bi-directive linking-->
+                               </component_input_sync>
+                             </div>
+                            <div>{{msg_1}}</div>
+                            <div>
+                                <h4>Using Model int Component to link data</h4>
+                                <component_with_model  v-model= "msg_2"><!--using sync to bi-directive linking-->
+                                </component_with_model>
+                              </div>
+                             <div>{{msg_2}}</div>
+                             
+                    </div>
+                    <h4>Using Scoped slots to Linking Component data to slot</h4>
+                    <template id="comp_with_scoped_slots">
+                        <div class=comp_with_scoped_slots>
+                          <div>In Componenet with Scoped slot</div>
+                          <div>Before slot_1</div>
+                          <slot  v-bind:data_1="data_in_components_1"></slot><!--scope slot can't work with named slot-->
+                          <div>Before slot_2</div>
+                          <slot v-bind:data_2="data_in_components_2"></slot>
+                        </div>
+                    </template>
+                    <template id="comp_with_multiple_scoped_slots">
+                      <div class=comp_with_multiple_scoped_slots>
+                          <div>In Componenet with Multiple Scoped slot</div>
+                         <slot v-for="items in item_list"
+                               :value_1="items.item_v1"  
+                               :value_1_v="items.item_v1_v" 
+                         ></slot>
+                      </div>
+                  </template>
+                    <div id="vue_container_15" class="vue_container vue_container_flex">
+                      <componnent_with_scoped_slots>
+                             
+                                 <template v-slot:default="slot_props"><!--vue 2.6 new syntax,and scope slot can't work with named slot-->
+                                   <h5>{{slot_props.data_1}}</h5>
+                                 </template>
+                      </componnent_with_scoped_slots>
+                       <componcomp_with_multiple_scoped_slots :item_list="item_list_in_VM">
+                          <template v-slot:default="items"> <!--note element under this tag will be repeat in slots in component-->
+                             <div>{{items.value_1}} :{{items.value_1_v}}</div>
+                          </template>
+
+                       </componcomp_with_multiple_scoped_slots>     
                     </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
