@@ -335,9 +335,9 @@
                         <div class=comp_with_scoped_slots>
                           <div>In Componenet with Scoped slot</div>
                           <div>Before slot_1</div>
-                          <slot  v-bind:data_1="data_in_components_1"></slot><!--scope slot can't work with named slot-->
+                          <slot v-bind:data_1="data_in_components_1" v-bind:data_2="data_in_components_2"></slot><!--scope slot can't work with named slot-->
                           <div>Before slot_2</div>
-                          <slot v-bind:data_2="data_in_components_2"></slot>
+                          <slot v-bind:data_1="data_in_components_2" v-bind:data_2="data_in_components_1"></slot>
                         </div>
                     </template>
                     <template id="comp_with_multiple_scoped_slots">
@@ -351,10 +351,15 @@
                   </template>
                     <div id="vue_container_15" class="vue_container vue_container_flex">
                       <componnent_with_scoped_slots>
-                             
-                                 <template v-slot:default="slot_props"><!--vue 2.6 new syntax,and scope slot can't work with named slot-->
-                                   <h5>{{slot_props.data_1}}</h5>
+                         
+                         
+                                 <template v-slot:default="slot_props_1"><!--vue 2.6 new syntax,and scope slot can't work with named slot,and only one template can be used-->
+                                
+                                  <h5>{{slot_props_1.data_1}}</h5> <!--element inside  <template> will be insert to all slot,with data in components used-->
+                                  <h5>{{slot_props_1.data_2}}</h5>
                                  </template>
+                            
+                                  
                       </componnent_with_scoped_slots>
                        <componcomp_with_multiple_scoped_slots :item_list="item_list_in_VM">
                           <template v-slot:default="items"> <!--note element under this tag will be repeat in slots in component-->
@@ -363,6 +368,67 @@
 
                        </componcomp_with_multiple_scoped_slots>     
                     </div>
+                    <h1>Vue : Component : More</h1>
+                    <script type="text/x-template" id="component_in_script"><!--component can be declared in script ,note type="text/x-template"-->
+                         <div v-once> <!--v-once promise only evaluate component once-->
+                             <div>{{msg_in_component_props}}</div>
+                             <div>{{msg_in_component_data}}</div>
+                             <slot name="slot_1"></slot>                            
+                         </div>
+                    </script>
+
+                    <div id="vue_container_16" class="vue_container vue_container_flex">
+                          <keep-alive><!--using "keep-alive" to keep components cached-->
+                              <component is="component_in_script"> <!--using  "is" to create components-->
+                               
+                                
+                                </component>
+                             
+                              </keep-alive>
+                              <component is="component_in_script" ref="ref_to_components" v-bind:msg_in_component_props="msg_in_VM_data_2"> <!--using  "is" to create components-->
+                               
+                              </component>
+                               <!--  <h5>{{computed_getMsgInComponentUsingRef}}</h5>  don't working!!!-->
+    
+                                 
+</div>
+<h1>Vue : Depth into API</h1>
+<template id="template_test_1"><div>
+  In template_test_1
+</div></template>
+<div id="vue_container_17" class="vue_container vue_container_flex">
+    <div>
+      <input type="text" v-model="msg_1">
+      <div>{{msg_1}}</div>
+    </div>
+    <div>
+        <div>{{msg_1_log}}</div>
+      </div>
+     <div>
+         <h4>Using Template in Vue Instance</h4>
+        <div id="vue_container_18" class="vue_container">
+            <div>11122333</div><!--note the all thing under VMI are replaced with template-->
+            <div>11122333</div>
+          </div>
+     </div>
+     <div>
+        <h4>Using Template in Vue Instance</h4>
+       <div id="vue_container_18" class="vue_container">
+           <div>11122333</div><!--note the all thing under VMI are replaced with template-->
+           <div>11122333</div>
+         </div>
+    </div>
+    <div>
+        <h4>Using $parent and $children</h4>
+        <template id="template_test_2"><div>
+            In template_test_1
+          </div></template>
+       <div id="vue_container_19" class="vue_container">
+           <div>11122333</div><!--note the all thing under VMI are replaced with template-->
+           <div>11122333</div>
+         </div>
+    </div>
+  </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>

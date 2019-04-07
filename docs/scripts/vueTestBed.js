@@ -519,7 +519,9 @@ window.onload=function(){
            {
             template:"#comp_with_scoped_slots",
             data:function(){
-                return {data_in_components_1:"data_in_components_1_output"};
+                return {data_in_components_1:"data_in_components_1_output",
+                        data_in_components_2:"data_in_components_2_output"
+                          };
             },
             props:[]//using .sync, prop can be any name,not just "value" with v-model
          
@@ -545,5 +547,75 @@ window.onload=function(){
                 ]
             }
                     
+        });
+        Vue.component(
+            "component_in_script",//component name,using small case to avoid error
+           {
+            template:"#component_in_script",
+            data:function(){
+                return {msg_in_component_data:"msg_in_component_data_output"};
+            },
+            props:["msg_in_component_props"]//using .sync, prop can be any name,not just "value" with v-model
+         
+            }); 
+        vueVM[16]=new Vue({
+            el:"#vue_container_16",
+            data:{
+                msg_in_VM_data_2:"msg_in_VM_data_2_output"
+            },
+            computed:{
+                computed_getMsgInComponentUsingRef:function(){
+                    return this.$refs.ref_to_components.msg_in_component;//computed using in rendering time,not working
+                },
+            },
+            methods:{
+                method_getMsgInComponentDataUsingRef:function(){
+                        return this.$refs.ref_to_components.msg_in_component;//method using after rendering time, working
+                    },
+                method_setMsgInInComponentDataUsingRef:function(v){
+                        this.$refs.ref_to_components.msg_in_component_data=v;//note change data,not reaction happen
+                    },
+                    method_setMsgInInComponentPropsUsingRef:function(v){
+                        this.$refs.ref_to_components.msg_in_component_props=v;//can't work ,note throw error
+                    }
+            }
+        });
+        vueVM[17]=new Vue({
+            el:"#vue_container_17",
+            data:{
+                msg_1:"msg_1_in_VI",
+                msg_1_log:"msg_1_log"
+            },
+            watch:{
+                msg_1:function(newV,oldV){
+                   this.msg_1_log="msg_1 change : new = "+ newV+" old = "+oldV;
+                }  
+            }
+
+
+        });
+        vueVM[18]=new Vue({
+            el:"#vue_container_18",
+            template:"#template_test_1" //using the whole template
+            
+        });
+        Vue.component(
+            "components_test_2",//component name,using small case to avoid error
+            
+            {
+            template:"#template_test_2",
+            parent:"vue_container_18",//linking to parent you know
+            data:function(){
+                return {msg_in_component_data:this.$parent.msg_test_1;};
+            },
+            //props:["msg_in_component_props"]//using .sync, prop can be any name,not just "value" with v-model
+         
+            }); 
+        vueVM[19]=new Vue({
+            el:"#vue_container_18",
+            data:{
+                msg_test_1:"msg_test_1_in_vueVM"
+            }
+            
         });
 }
