@@ -600,22 +600,121 @@ window.onload=function(){
             
         });
         Vue.component(
-            "components_test_2",//component name,using small case to avoid error
-            
+            "component_test_2",//component name,using small case to avoid error
             {
             template:"#template_test_2",
-            parent:"vue_container_18",//linking to parent you know
+            //parent:"#vue_container_19",//linking to parent you know
+            inject:["data_1_from_parent"],
             data:function(){
-                return {msg_in_component_data:this.$parent.msg_test_1;};
+                return {
+                    msg_in_component_data: this.$parent.msg_test_1,
+                    msg_in_component_data_2:"msg_in_component_data",
+                    injecting_data:this.data_1_from_parent
+                }
             },
-            //props:["msg_in_component_props"]//using .sync, prop can be any name,not just "value" with v-model
-         
+            props:["index"]//using .sync, prop can be any name,not just "value" with v-model
+           
             }); 
         vueVM[19]=new Vue({
-            el:"#vue_container_18",
+            el:"#vue_container_19",
             data:{
-                msg_test_1:"msg_test_1_in_vueVM"
-            }
+                msg_test_1:"msg_test_1_in_vueVM",
+                component_index:[555,666],
+                //getFrom_Children_error:this.$children[0].msg_in_component_data_2 //casue error
+                getFromChildren_msg:"Null",
+                data_watched:{data_1:"data_watched_data_1_default"},
+                watch_output:"watch_output_default",
+                data_test_1:"data_test_1__default",
+                data_test_3:0,
+                update_time:0,
+            },
+            //any other thing except Vue default
+            my_option_1:"my_option_1_string",
+            my_option_2:["my_option_2_1","my_option_2_2"],
+            my_option_3:{data_1:"my_option_3_data_1"},
+            provide:{
+                data_1_from_parent:"data_1_provided_by_ vueVM[19]"
+            },
+            methods:{
+                addChildren:()=>{},
+                forceUpdate:()=>{},
+                getFromChildren_afterRendering:()=>{},
+                set_data_test_1:()=>{},
+                delete_data_test_1:()=>{},
+                set_data_test_2:()=>{},
+                delete_data_test_2:()=>{},
+                set_my_option_1:()=>{},
+                delete_my_option_1:()=>{},
+                set_my_option_4:()=>{},
+                delete_my_option_4:()=>{},
+                update_data_test_3:()=>{},
+            },
+            created:function(){
+                let thisInstance=this;
+                thisInstance.addChildren= function(){
+                    thisInstance.component_index.push(thisInstance.component_index[thisInstance.component_index.length-1]+1);
+                },
+                thisInstance.forceUpdate= function(){
+                    thisInstance.$forceUpdate();
+                },
+                thisInstance.getFromChildren_afterRendering= function(){
+                    thisInstance.getFromChildren_msg=thisInstance.$children[0].msg_in_component_data_2 ;
+                }
+                thisInstance.update_data_test_3=function(){
+                    thisInstance.data_test_3++;
+                    thisInstance.data_test_3++;
+                    thisInstance.data_test_3++;
+                    thisInstance.data_test_3++;
+                    thisInstance.data_test_3++;
+                    console.log("update data_test_3 finished");
+                    console.log(thisInstance.$el.querySelector("#data_test_3_div").innerText);//note data_test_3 unchanged
+                   
+                    thisInstance.$nextTick(function()
+                    {
+                      
+                        console.log("nextTick!!!");
+                        console.log(thisInstance.$el.querySelector("#data_test_3_div").innerText);//note data_test_3 changed and async
+                    });
+                    console.log("leave update_data_test_3");
+                }
+                let addSetAndDelete=function(target,name){
+                    thisInstance["set_"+name]=function(){
+                        thisInstance.$set(
+                            thisInstance[target],
+                            name,
+                            "new "+name
+                        );
+                   };
+                   thisInstance["delete_"+name]=function(){
+                    thisInstance.$delete(
+                        thisInstance[target],
+                        name
+                    );
+               }
             
+                };
+                addSetAndDelete("$data","data_test_1");//delete error ,can't delele item under vue default object
+                addSetAndDelete("$data","data_test_2");//delete and set ,error can't set a new item under vue default object
+                addSetAndDelete("$options","my_option_1");//all right,but $options is not reactive
+                addSetAndDelete("$options","my_option_4");//all right,can  set or delete a new item under $options
+            },
+            updated:function(){
+                //this.update_time++; don't update data in updated function,it will recursively update,dead looping
+                console.log("updated!!!");
+            }
         });
+        vueVM[19].$watch(
+            "data_watched"
+           ,function(newV,oldV){
+            if(!newV||!oldV)return 
+            vueVM[19].watch_output
+            ="data_watched has changed : old = "+oldV.data_1+" new = "+newV.data_1;
+            // note small bug newV==oldV when watch with deep:true 
+            // assigning whole object will get correct result,even when deep:fasle
+           },
+           {
+            immediate: true,//  callback will be triggered after watch added
+            deep:true //  callback will be triggered when data inside object changed
+           }
+        )
 }

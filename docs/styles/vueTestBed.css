@@ -208,7 +208,9 @@ body{
     text-align: left;
     font-size: 1.5em;
 }
-
+.vue_container_flex>*{
+    text-align: center;
+}
 #vue_container_13 .input_form_1{
     width:80%;
     margin: 0px auto;

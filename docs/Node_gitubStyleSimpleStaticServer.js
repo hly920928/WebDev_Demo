@@ -1,7 +1,7 @@
 var PORT;var HOST;
 
 if(process.env.COMPUTERNAME=="HLY2-PC"){
-  PORT=44564;HOST = "192.168.1.3";
+  PORT=27777;HOST = "192.168.1.3";
 }else if (process.env.PWD== '/root/StaticSite') {
     PORT = 27777 ; HOST= "0.0.0.0";
 }else{

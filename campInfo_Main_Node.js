@@ -2,7 +2,7 @@
 var PORT;var HOST;
 
 if(process.env.COMPUTERNAME=="HLY2-PC"){
-  PORT=44564;HOST = "192.168.1.5";
+  PORT=27001;HOST = "192.168.1.3";
 }else if (process.env.PWD== '/root/AlC_NodeWebDev') {
     PORT = 27001 ; HOST= "0.0.0.0";
 }else{
@@ -138,6 +138,6 @@ var seq=0;
 function heartBeats(){
     console.log("Server Working! "+seq);seq++;
   }
-setInterval(heartBeats,5000);
+//setInterval(heartBeats,5000);
 
 

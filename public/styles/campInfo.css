@@ -112,3 +112,18 @@ textarea{
 body .btn-success{
   background-color: rgb(52, 195, 195);
 }
+.userSetup{
+    width:25vw;
+    height: 14vh;
+    background-color: rgb(225, 238, 238);
+    border-radius: 15px;
+    margin: 2vh auto;
+    
+    padding: 0.5vh;
+}
+.userSetup>*{
+    display: block;
+    width: 90%;
+    height: 3.6vh;
+    margin:0.5vh auto;
+}

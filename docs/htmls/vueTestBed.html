@@ -392,6 +392,7 @@
     
                                  
 </div>
+
 <h1>Vue : Depth into API</h1>
 <template id="template_test_1"><div>
   In template_test_1
@@ -411,24 +412,84 @@
             <div>11122333</div>
           </div>
      </div>
-     <div>
-        <h4>Using Template in Vue Instance</h4>
-       <div id="vue_container_18" class="vue_container">
-           <div>11122333</div><!--note the all thing under VMI are replaced with template-->
-           <div>11122333</div>
-         </div>
-    </div>
-    <div>
-        <h4>Using $parent and $children</h4>
-        <template id="template_test_2"><div>
-            In template_test_1
-          </div></template>
-       <div id="vue_container_19" class="vue_container">
-           <div>11122333</div><!--note the all thing under VMI are replaced with template-->
-           <div>11122333</div>
-         </div>
-    </div>
+    
+
   </div>
+     <!--note inside a VM instance ,add a other VM instance cause error-->
+  
+      <template id="template_test_2">
+          <div>
+           <div> In template_test_2</div>
+          <div>{{msg_in_component_data}}
+          </div>
+
+          <div>{{index}}</div>
+            <div>{{injecting_data}}</div>
+          </div>
+        </template>
+     <div id="vue_container_19" class="vue_container vue_container_flex">
+        <h4>Using $parent and $children</h4>
+      <!--  <div>{{getFrom_Children_error}}</div> error ,during rendering,$children is undefined -->
+       <div>$children.length
+         <div>{{$children.length}}</div><!--note ==0 ,during render time $children is empty,and not reactive-->
+         <button v-on:click="addChildren">Add  Children Component</button><!--note ,will update children.length but always =acutal -1-->
+         <button v-on:click="forceUpdate">forceUpdate</button>
+        </div>
+        <component_test_2 v-for="_index in component_index" v-bind:index="_index" :key="_index"></component_test_2>
+       <div>
+         <div>{{getFromChildren_msg}}</div>
+          <button v-on:click="getFromChildren_afterRendering">getMsgFromChildren</button>
+          
+       </div>
+       <div>
+         <h4>Sending data from Vue instance to Componet by Using Inject and Provide</h4>
+         <component_test_2></component_test_2>
+           
+        </div>
+        <div>
+
+          <h4>Using $data</h4>
+          <div>{{msg_test_1}}</div>
+          <div>{{ $data.msg_test_1}}</div><!--these two is the same-->
+        </div>
+        <div>
+
+            <h4>Using $data</h4>
+            <div>{{msg_test_1}}</div>
+            <div>{{ $data.msg_test_1}}</div><!--these two is the same-->
+          </div>
+          <div>
+
+              <h4>Using $options</h4>
+              <div>{{$options.my_option_1}}</div>
+              <div>{{$options.my_option_2[1]}}</div>
+              <div>{{$options.my_option_3.data_1}}</div>
+            </div>
+            <div>
+
+                <h4>Using $watch</h4>
+                <div>{{data_watched.data_1}}</div>
+                <div>{{watch_output}}</div>
+              <input type="text" v-model="data_watched.data_1">
+              </div>
+              <div>
+
+                  <h4>Using $set and $delete</h4>
+                  <div>{{data_test_1}}<button v-on:click="set_data_test_1">set</button><button v-on:click="delete_data_test_1">delete</button></div>
+                  <!--<div>{{data_test_2}} <button v-on:click="set_data_test_2">set</button><button v-on:click="delete_data_test_2">delete</button></div>-->
+                  <div>{{$options.my_option_1}}<button v-on:click="set_my_option_1">set</button><button v-on:click="delete_my_option_1">delete</button></div>
+                  <div>{{$options.my_option_4}}<button v-on:click="set_my_option_4">set</button><button v-on:click="delete_my_option_4">delete</button></div>
+                  <button v-on:click="forceUpdate">forceUpdate</button>
+               
+                </div>
+                <div>
+
+                    <h4>Async Update Queue And nextTick</h4>
+                    <div id="data_test_3_div">{{data_test_3}}</div>
+                    <button v-on:click="update_data_test_3">update</button>
+                  </div>
+       </div>
+
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>
