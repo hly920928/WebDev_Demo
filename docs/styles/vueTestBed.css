@@ -241,3 +241,79 @@ body{
 .input_form_1 option{
     font-size: 1.5em;
 }
+
+
+  .myPtag_1{
+    font-size: 4em;
+}  
+.fade_1-enter{ /*   note not all property haven't effect,set will be overwrited by default */
+ /*    color:rgb(255, 0, 0);  */
+    font-size: 0em;
+    opacity:0; 
+}
+.fade_1-enter-to{ /*   note property can't keep,using .myPtag_1 set default  */
+    opacity: 1;
+    font-size: 4em;
+}
+
+.fade_1-enter-active{
+    transition: opacity 1.5s linear 0s,font-size 1.5s ease-in-out 0s ;
+                    /* ,color 2s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;  */
+    
+     
+}
+.fade_1-leave{ /*   note not all property haven't effect,property may be overwrited by default */
+    opacity: 1;
+    
+    font-size:4em;
+} 
+
+.fade_1-leave-to{
+    /* opacity: 0; */
+    opacity: 0;
+    font-size:0em;
+    /* color:rgb(255, 0, 0); */
+}
+.fade_1-leave-active{
+    transition: opacity 1.5s linear 0s,font-size 1.5s ease-in-out 0s ;
+}
+.fade_VandR-enter{ /*  note have effect */
+    opacity: 0;
+}
+.fade_VandR-enter-to{
+    opacity: 1;
+}
+.fade_VandR-leave{
+    opacity: 1;
+}
+.fade_VandR-leave-to{
+    opacity: 0;
+}
+.fade_VandR-leave-active,.fade_VandR-enter-active{
+    transition: opacity 5s linear 0s ;
+}
+/**/
+.tran_group_1-enter{ /*  note have effect */
+    opacity: 0;
+   transform:  translate3d(0,0,-200px);
+}
+.tran_group_1-enter-to{
+    opacity: 1;
+}
+.tran_group_1-leave{
+    opacity: 1;
+}
+.tran_group_1-leave-to{
+    opacity: 0;
+    transform:  translate3d(0,0,-200px);
+}
+.tran_group_1-leave-active,.tran_group_1-enter-active{
+    transition: opacity 0.5s linear 0s  ,transform 0.5s linear 0s ;
+}
+#vue_container_20 li{
+    font-size: 2em;
+}
+.listDiv_1{
+    perspective-origin: center;
+    perspective: 5.5cm;
+}

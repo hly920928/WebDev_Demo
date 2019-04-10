@@ -8,7 +8,7 @@
     <link rel="stylesheet" media="(hover: none)"  href="./styles/personalSite_mobile.css" />
     <link rel="stylesheet"   href="./styles/semantic.min.css" />
     <link rel="stylesheet" media="" href="./styles/fontawesome_all.min.css" />
-    <meta http-equiv="refresh" content="60">
+    <!-- <meta http-equiv="refresh" content="60"> -->
 </head>
 <body id="myBody">
 <div class="myHeader"></div>
@@ -139,10 +139,34 @@
                                 </div>
                         </a>
                 </div>
+                <template id="web_demo_camp">
+                        <div :class="class_list">
+                                <div class="webDemo_inside_cell">
+                                    <div class="webDemo_title">{{title}}</div>
+                                    <div class="webDemo_comment">{{comment}}</div>
+                                    <div class="webDemo_tech">使用技术：<span>{{tech}}</span></div>
+                                    <a  :href="target_url" target="_blank">
+                                      <div  class="webDemo_imgDiv">
+                                           <div class="webDemo_imgDiv_in"><img :src="img_url"></div>
+                                      </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                </template>
                 <div id="webDemoTitle" class="title_1"><h1>Web展示</h1></div>
                     <div id="webDemoContainer">
-                        
-                        <div class="gridCell_Small"></div>
+                        <comp_web_demo 
+                           v-for="demo in demo_list"
+                          :title="demo.title"
+                          :class_list="demo.class_list"
+                          :comment="demo.comment"
+                           :tech="demo.tech"
+                             :target_url="demo.target_url"
+                             :img_url="demo.img_url"
+                             key="demo.title"
+                        ></comp_web_demo>
+                        <!-- <div class="gridCell_Small"></div>
                         <div class="gridCell_Small"></div>
                         <div class="gridCell gridCell_Large">
                             <div class="webDemo_inside_cell">
@@ -155,7 +179,7 @@
                                   </div>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="gridCell_Small"></div>
                         <div class="gridCell_Small"></div>
                         <div class="gridCell_Small"></div>
@@ -187,5 +211,5 @@
 <script src="./scripts/lib/vue.js"></script>
 <script src="./scripts/lib/jquery-3.3.1.min.js"></script>
 <script src="./scripts/lib/semantic.min.js"></script>
-
+<script src="./scripts/personPage.js"></script>
 </html>

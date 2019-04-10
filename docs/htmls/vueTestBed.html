@@ -262,46 +262,48 @@
                     </template>
                     <h1>Vue: Mini-project : News Viewing & Editing App</h1>
                     <div id="vue_container_13" class="vue_container">
-                          <div v-if="status=='view'">
+                        <transition name="fade_VandR" mode="out-in">
+                            <div v-if="status=='view'" key="viewer"> <!--add key to separate element-->
                              
-                            <div class="iconDiv">
-                                <i class="fas fa-edit myIcon" v-on:click="switch_mode"></i>
-                                
-                            </div>
-                            <readingmode_comp 
-                            v-bind:title="title_input.text" 
-                            v-bind:author="author" 
-                            v-bind:date="date"
-                           :category="category" 
-                            >
-                        <slot slot="article">
-                          <div  v-bind:data-category="category" class="article_text"  >
-                            {{article_main}}
-                          </div>
-                        </slot>
-                        </readingmode_comp>
-                          </div>
-                          <div class="editing_mode"v-if="status=='edit'"> 
-                            <div class="iconDiv">
-                                <i class="far fa-save myIcon"  v-on:click="switch_mode"></i>
-                          </div>
-                         <div class="input_form_1">
-                                <label class="line_1_title">Title</label>
-                          
-                                <input class="line_1_input" v-bind:class="{redBorder:title_input.isBorderRed()}"type="text" v-model="title_input_computed">  <!--using v-model=computed ,avoiding scoping issue-->
-                                <div class="line_1_display">{{title_input.getRemain()}}/{{title_input.limit}}</div>
-                                
-                                <label class="line_2_title">Author</label>
-                                <input class="line_2_input" type="text"v-model="author">
-                                <label class="line_3_title">Category</label>
-                                <select  class="line_3_input" v-model="category">
-                                    <option v-for="item in category_list" v-bind:value="item">{{item}}</option>
-                                </select>
-                             
+                                <div class="iconDiv">
+                                    <i class="fas fa-edit myIcon" v-on:click="switch_mode"></i>
+                                    
+                                </div>
+                                <readingmode_comp 
+                                v-bind:title="title_input.text" 
+                                v-bind:author="author" 
+                                v-bind:date="date"
+                               :category="category" 
+                                >
+                            <slot slot="article">
+                              <div  v-bind:data-category="category" class="article_text"  >
+                                {{article_main}}
                               </div>
-                              <h4>Article Content</h4>
-                              <textarea v-model="article_main"></textarea>
-                            </div>
+                            </slot>
+                            </readingmode_comp>
+                              </div>
+                              <div class="editing_mode" v-if="status=='edit'" key="editer"> <!--add key to separate element-->
+                                <div class="iconDiv">
+                                    <i class="far fa-save myIcon"  v-on:click="switch_mode"></i>
+                              </div>
+                             <div class="input_form_1">
+                                    <label class="line_1_title">Title</label>
+                              
+                                    <input class="line_1_input" v-bind:class="{redBorder:title_input.isBorderRed()}"type="text" v-model="title_input_computed">  <!--using v-model=computed ,avoiding scoping issue-->
+                                    <div class="line_1_display">{{title_input.getRemain()}}/{{title_input.limit}}</div>
+                                    
+                                    <label class="line_2_title">Author</label>
+                                    <input class="line_2_input" type="text"v-model="author">
+                                    <label class="line_3_title">Category</label>
+                                    <select  class="line_3_input" v-model="category">
+                                        <option v-for="item in category_list" v-bind:value="item">{{item}}</option>
+                                    </select>
+                                 
+                                  </div>
+                                  <h4>Article Content</h4>
+                                  <textarea v-model="article_main"></textarea>
+                                </div>
+                        </transition>
                          
                         </div>
                     <h1>Vue: New Contents in Vue 2.3</h1>
@@ -489,7 +491,33 @@
                     <button v-on:click="update_data_test_3">update</button>
                   </div>
        </div>
-
+       <h1>Vue : Transition and Animation</h1>
+       <template id="comp_switch">
+          <div>{{comp_name}}</div>
+    </template>
+       <div id="vue_container_20" class="vue_container vue_container_flex">
+         <div>
+           <transition name="fade_1"><!--wrap what will be transitioned in tag-->
+              <p v-show="show_1" class="myPtag_1">In p tag</p>
+           </transition>
+          <button v-on:click="show_1=!show_1">toggle</button>
+         </div>
+    
+         <div>
+           <comments v-bind:is="compNameList[compId]"></comments>
+           <button v-on:click="compId=(compId+1)%(compNameList.length)">switch</button>
+         </div>
+         <div>
+           <h4>transition-group</h4>
+           <ul class="listDiv_1">
+             <transition-group name="tran_group_1">
+                <li v-for="i in list_2" key="i">{{i}} </li>            
+            </transition-group>
+           </ul>
+           <div><input type="text" v-model="newItem"><button v-on:click="list_2.push(newItem)">Add</button></div>
+           <div> <button v-on:click="list_2.pop()">Remove</button></div>
+         </div>
+       </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>

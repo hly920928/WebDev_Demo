@@ -716,5 +716,37 @@ window.onload=function(){
             immediate: true,//  callback will be triggered after watch added
             deep:true //  callback will be triggered when data inside object changed
            }
-        )
+        );
+        Vue.component(
+            "comp_switch_1",
+         {
+            template:"#comp_switch",
+             data:function(){return {comp_name: "comp_switch_1"};
+         }
+      } );
+      Vue.component(
+         "comp_switch_2",
+      {      
+          template:"#comp_switch",
+          data:function(){return {comp_name: "comp_switch_2"};
+      }
+   } );
+   Vue.component(
+    "comp_switch_3",
+ {
+    template:"#comp_switch",
+     data:function(){return {comp_name: "comp_switch_3"};
+ }
+} );
+        vueVM[20]=new Vue({
+            el:"#vue_container_20",
+            data:{
+                 show_1:true,
+                 compId:0,
+                 compNameList:[  "comp_switch_1","comp_switch_2", "comp_switch_3"],
+                 list_2:["A","B","C","D"],
+                 newItem:null
+            }
+        });
+     
 }
