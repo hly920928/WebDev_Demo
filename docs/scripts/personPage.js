@@ -22,6 +22,12 @@ window.onload=function(){
           }
        });
        vue_WebDemoContainer.demo_list.push(webDemoList[0]);
-
+       let sideBar= document.querySelector(".mySideBar");
+  
+    document.querySelector("#toggleMenu_1").addEventListener("click",
+          function(){
+            sideBar.classList.toggle("veryNarrow");
+          }
+    );
 
 }

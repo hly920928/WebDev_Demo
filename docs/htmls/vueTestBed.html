@@ -552,6 +552,16 @@
          <button v-on:click="show_3=!show_3">toggle</button>
         </div>
        </div>
+       <h1>Vue : Render Function</h1>
+       <div  id="vue_container_21" class="vue_container vue_container_flex">
+                  <component_in_render_function></component_in_render_function>
+                  <component_in_render_function_attr_added></component_in_render_function_attr_added>
+                  <component_in_render_function_with_list></component_in_render_function_with_list>
+                  <div>
+                   <div> {{msg_in_VM}}</div>
+                    <component_in_render_function_with_input v-model="msg_in_VM"></component_in_render_function_with_input>
+                  </div>
+       </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>

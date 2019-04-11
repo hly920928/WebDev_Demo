@@ -774,5 +774,139 @@ window.onload=function(){
                  newItem:null
             }
         });
-     
+        Vue.component(
+            "component_in_render_function",
+            {
+                 render:function(createElement){
+                     //equal using JS to build DOM tree
+                    let p1=createElement(
+                        "p", //tag type
+                        "In p1"//innerText
+                        
+                        );
+                    let p2=createElement(
+                            "p", //tag type
+                             [p1]//inner element ,must in array,even only one element
+                            );
+                    let p3=createElement(
+                                "p", //tag type
+                                "In p3"//innerText
+                         );
+                        return createElement(
+                            "div",
+                             [p3,p1,p2]
+                        );
+                 }
+            }   
+        );
+        Vue.component(
+            "component_in_render_function_attr_added",
+            {
+                 render:function(createElement){
+                     //equal using JS to build DOM tree
+              
+                        return createElement(
+                            "div",
+                            {
+                                style:{
+                                    fontSize:"1.2em",
+                                    color:"blue"
+                                }
+                            }
+                            ,
+                           "In component_in_render_function_attr_added"
+                        );
+                 }
+            }   
+        );
+        Vue.component(
+            "component_in_render_function_with_list",
+            {
+                 render:function(createElement){
+                     //equal using JS to build DOM tree
+                        let span_1=createElement(
+                            "span",
+                            "item_name "
+                        );
+                        let span_2=createElement(
+                            "span",
+                            "item_val "
+                        );
+                       let items=this.items_list.map(function(item){
+                           return  createElement(
+                                 "div",
+                                 [
+                                    span_1,      
+                                    createElement(
+                                        "span",
+                                        item.name+" "
+                                    ),
+                                    span_2,
+                                    createElement(
+                                        "span",
+                                        item.value
+                                    )
+                                 ]
+                            );
+                       });
+                        return createElement(
+                            "div",
+                            [
+                                createElement(
+                                "h4",
+                                "create list using render fuction"
+                            ),items
+                             ]
+                        );
+                 },
+                 data:function(){
+                     return {
+                        items_list:[
+                            {name:"A",value:"val_A"},
+                            {name:"B",value:"val_B"},
+                            {name:"C",value:"val_C"},
+                            {name:"D",value:"val_D"}
+                        ]
+                    }
+                 }
+            }   
+        );
+        Vue.component(
+            "component_in_render_function_with_input",{
+                render:function(createElement){
+                    let self=this;
+                   return createElement(
+                       "input",
+                       {
+                           attrs:{
+                               title:"input_I"
+                           },
+                           domProps:{
+                                  value:this.msg
+                           },
+                           on:{
+                               input:function(event){
+                                self.send(event.currentTarget.value);
+                               }
+                           }
+                       }
+                   );
+                },
+                props:["msg"],
+                model:{
+                    event:"my_event_1",
+                    prop:"msg"
+                },
+              methods:{
+                  send:function(v){
+                      this.$emit("my_event_1",v);
+                  }
+              }
+            })
+        vueVM[21]=new Vue({
+            el:"#vue_container_21",
+            data:{
+                msg_in_VM:"msg_in_VM_default"
+            }
+        });
 }

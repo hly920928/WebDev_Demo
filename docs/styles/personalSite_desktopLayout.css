@@ -1,0 +1,227 @@
+.myContent .title_1{
+    border-bottom: 3px gray solid;
+    height: 8vh;
+}
+.myContent>.title_1>h1{
+    line-height:6vh; 
+}
+.myHeader{
+    position: absolute;
+    width: 100%;
+    height: 3vh;
+    background-color: rgb(197, 197, 197);
+
+}
+.myfooter{
+    position: absolute;
+    width: 100%;
+    height:3vh;
+    top:97vh;
+    background-color:palegreen;
+}
+.myMain{
+    position: absolute;
+    /*top:3vh;*/
+    width: 100%;
+    height:100vh;
+    display: flex;
+}
+
+.mySideBar,.myContent{
+    height:100%;
+    box-sizing: border-box;
+    margin:0px;
+    overflow:auto;
+}
+
+.mySideBar{
+    flex:0 1 200px;
+    background-color: rgb(34, 34, 34);
+}
+#sideBar_contact{
+    padding:5%;
+}
+#sideBar_contact>.mail{
+    text-align: left;
+    font-size: 0.9em;
+}
+.mySideBar>div{
+    padding:5vh 3px;
+    text-align: center;
+    margin: 4px auto;
+    color:white;
+    font-size: 1.2em;
+    border-top: 1px solid  rgb(199, 199, 199);
+}
+.myContent{
+    flex:1 1 800px;
+    background-color: snow;
+}
+.myContent>div{
+    width:90%;
+    margin: 2vh auto;
+}
+
+.myContent>div>h1{
+    font-size: 3em;
+}
+.contentDiv{
+    width:80%;
+    margin: 30px auto;
+    min-height:300px;
+    background-color:lightskyblue; 
+}
+#MOOCDiv{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.classCard{
+    box-sizing: border-box;
+    background-color: rgb(253, 244, 230);
+    flex:1 1 400px;
+    align-self:flex-start;
+    margin: 10px;
+    max-width: 25%;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px 0px rgba(133, 133, 133, 0.473);
+}
+.classCard>*{
+    float: left;
+    display: block;
+   
+}
+.classCard>div:first-of-type{
+    width: 100%;
+}
+.classCard>div:first-of-type>img{
+    width: 100%;
+}
+.classCard>.info{
+    width:100%;
+    padding: 2vh 1vw;
+}
+.classCard>.info>a{
+    font-size: 2em;
+}
+.classCard>.info>div{
+    padding: 5% 3%;
+    font-size:1.6em;
+}
+#algorithmsBtnDiv{
+    height: 10vh;
+}
+#algorithmsBtnDiv>a{
+    display: block;
+    height: 100%;
+    width: 47%;
+    margin: 0px 1%;
+    float: left;
+}
+#algorithmsBtnDiv>a>.myBigButton{
+   height: 100%;
+   width: 100%;
+   padding:0px 2%;
+   border-radius:1vmin;
+}
+#algorithmsBtnDiv>a>.myBigButton>.imgDiv{
+    float: left;
+    height: 100%;
+}
+#algorithmsBtnDiv>a>.myBigButton>.imgDiv>img{
+    margin:8% 0 0 5% ;
+   height: 100%;
+   font-size: 5em;
+}
+#algorithmsBtnDiv>a>.myBigButton>.imgDiv>i{
+    margin:20% 0 0 5% ;
+   height: 100%;
+   font-size: 7.5vh;
+}
+#algorithmsBtnDiv .myBigButton>.myBigBtnText{
+    box-sizing: border-box;
+    float: right;
+    width: 70%;
+    line-height: 10vh;
+}  
+#webDemoContainer{ 
+    width:98%;
+    margin: 0px auto;
+}
+@media(min-width: 1800px){
+    #webDemoContainer{
+        
+        grid-template-columns: repeat(6,1fr);
+        grid-auto-rows: auto;
+       
+    }
+  }
+  @media(min-width: 1100px)and (max-width: 1800px){
+      #webDemoContainer{
+          grid-template-columns: repeat(4,1fr);
+          grid-auto-rows: auto;
+      }
+    }
+  @media(max-width:1100px){
+      #webDemoContainer{
+          grid-template-columns: repeat(3,1fr);
+          grid-auto-rows: auto;
+      }
+  }
+  .gridCell>.webDemo_inside_cell>.webDemo_title{
+
+    height: 10%;
+        padding:0px 0.5%;
+       text-align: center;
+       line-height:100%;
+       font-weight: bold;
+       font-size: 400%;
+    }
+    .gridCell>.webDemo_inside_cell>.webDemo_comment{
+    
+           height: 3%;
+            text-indent: 2%;
+           text-align: left;
+           /* line-height:100%; */
+           /* font-weight: bold; */
+           font-size:150%;
+        }
+    .gridCell>.webDemo_inside_cell>.webDemo_tech{
+    
+            height:4%;
+            text-indent: 2%;
+               text-align: left;
+               /* line-height:100%; */
+               /* font-weight: bold; */
+               font-size:120%;
+         }
+         .webDemo_inside_cell>a>.webDemo_imgDiv{
+         padding: 1.5% 0px;
+          width:100%;
+          height: 83%;
+          overflow: hidden;
+         }
+         .webDemo_inside_cell>a>.webDemo_imgDiv>.webDemo_imgDiv_in{
+             border-radius: 2%;
+             width:100%;
+             height: 100%;
+             overflow: hidden;
+            }
+         #webDemoContainer  a{
+            width: 100%;
+            overflow: hidden;
+        }
+        #webDemoContainer  .webDemo_imgDiv_in>img{
+            width: 100%;
+            filter:grayscale(75%) blur(2px); 
+            transition-duration: 0.1s;
+            transition-property: filter;
+            transition-timing-function: linear;
+            /*put transition in default place*/
+         }
+         #webDemoContainer  .webDemo_imgDiv_in>img:hover{
+            width: 100%;
+            filter:grayscale(0%) blur(0px);  
+         
+         }
