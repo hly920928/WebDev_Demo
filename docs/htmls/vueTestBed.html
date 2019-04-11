@@ -6,6 +6,7 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <link rel="stylesheet" media="" href="../styles/vueTestBed.css" />
     <link rel="stylesheet" media="" href="../styles/fontawesome_all.min.css" />
+    <link rel="stylesheet" media="" href="../styles/animate.css" />
 </head>
 <body>
     <h1> Vue : Basic: v-text, v-html, v-bind</h1>
@@ -511,14 +512,48 @@
            <h4>transition-group</h4>
            <ul class="listDiv_1">
              <transition-group name="tran_group_1">
-                <li v-for="i in list_2" key="i">{{i}} </li>            
+                <li v-for="item in list_2" :key="item.content">{{item.content}} </li>            
             </transition-group>
            </ul>
-           <div><input type="text" v-model="newItem"><button v-on:click="list_2.push(newItem)">Add</button></div>
+           <div><input type="text" v-model="newItem"><button v-on:click="list_2.push({content:newItem})">Add</button></div>
            <div> <button v-on:click="list_2.pop()">Remove</button></div>
          </div>
+         <div>
+           <h3>Using CSS animate : Animate.css</h3>
+          <transition  
+     
+          name="custom-classes-transition"   
+          enter-active-class="animated rubberBand" 
+          leave-active-class="animated bounceOutRight "><!--must   name="custom-classes-transition"    first,not working on firefox-->
+             <p v-show="show_2" class="myPtag_1">In p tag II</p> 
+          </transition>
+         <button v-on:click="show_2=!show_2">toggle</button>
+        </div>
+        <div>
+            <h3>Animate in JS and Vue : transition hook and Velocity.js : then wrap with Component </h3>
+            <template id="comp_animated_1">
+             
+                  <transition 
+                     v-bind::css="false" 
+                    v-on:before-enter="beforeEnter"
+                    v-on:enter="enter"
+                    v-on:leave="leave"
+                  ><!--note    v-bind::css="false" to disable css binding ,avoid conflicting  -->
+                      <slot></slot>                  
+                  </transition>
+              
+              
+            </template>
+           <component_animated_1>
+             <p v-show="show_3" class="myPtag_1">In Componet</p> 
+          
+          </component_animated_1> 
+          
+         <button v-on:click="show_3=!show_3">toggle</button>
+        </div>
        </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>
+<script src="../scripts/velocity.min.js"></script>
 </html>

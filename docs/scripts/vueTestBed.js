@@ -738,13 +738,39 @@ window.onload=function(){
      data:function(){return {comp_name: "comp_switch_3"};
  }
 } );
+
+  Vue.component(
+    "component_animated_1",
+    {
+       template:"#comp_animated_1",
+       //working , ignore Vue console warning
+       methods:{
+        beforeEnter:function(el){
+            el.style.opacity=0;
+            el.style.fontSize=0;
+        },
+        enter:function(el,done){
+           Velocity(el,{opacity:1,fontSize:"2em"},{duration:1000}); //set keyframe
+           Velocity(el,{fontSize:"1em"},{duration:1000});  
+           Velocity(el,{fontSize:"1em"},{complete:done});  //note set ending status with done
+        },
+        leave:function(el,done){
+            Velocity(el,{fontSize:"2em"},{duration:1000}); //set keyframe
+            Velocity(el,{opacity:0,fontSize:"0em"},{duration:1000});  
+            Velocity(el,{fontSize:"0em"},{complete:done});  //note set ending status with done
+         }
+       }
+    }
+  );
         vueVM[20]=new Vue({
             el:"#vue_container_20",
             data:{
                  show_1:true,
+                 show_2:true,
+                 show_3:true,
                  compId:0,
                  compNameList:[  "comp_switch_1","comp_switch_2", "comp_switch_3"],
-                 list_2:["A","B","C","D"],
+                 list_2:[{content:"A"},{content:"B"},{content:"C"},{content:"D"}],
                  newItem:null
             }
         });
