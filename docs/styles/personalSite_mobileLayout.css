@@ -42,7 +42,7 @@ div{
     color:white;
     font-size: 3vh;
     position: relative;
-    left:90vw;
+    left:1vw;
     line-height: 4vh;
 }
 #toggleMenu_1:active{
@@ -198,8 +198,8 @@ div{
   font-size: 1vh;
 }
 #webDemoContainer{
-    width:96%;
-    margin: 0px  3% 0px 1%;
+    width:98%;
+    margin: 0px  1% 0px 1%;
     display: grid;
     grid-auto-flow: row dense;
     grid-gap: 3px;

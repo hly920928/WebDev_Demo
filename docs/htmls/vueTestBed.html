@@ -562,6 +562,25 @@
                     <component_in_render_function_with_input v-model="msg_in_VM"></component_in_render_function_with_input>
                   </div>
        </div>
+       <h1>Vue : Custom Directives</h1>
+       <div   id="vue_container_22" class="vue_container vue_container_flex">
+            <div>
+              <h4>hook function</h4>
+              <div v-if="show_1" v-test_1>div_bind_to_test_1 val = <span> {{val_1}}</span></div>
+              <button @click="show_1=!show_1">Toggle</button>
+              <button @click="val_1=val_1+1">Add One</button>
+            </div>
+            <div>
+                <h4>binding Object</h4>
+                <div  v-test_2:arg_1.mod_1="msg_1">{{msg_1}}</span></div>
+                <button @click="msg_1=msg_1+1">Add One</button>
+              </div>
+              <div>
+                  <h4>binding ShortCut</h4>
+                  <div  v-test_3:arg_1.mod_1="msg_2">{{msg_2}}</span></div>
+                  <button @click="msg_2=msg_2+1">Add One</button>
+                </div>
+       </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>

@@ -909,4 +909,56 @@ window.onload=function(){
                 msg_in_VM:"msg_in_VM_default"
             }
         });
+        Vue.directive("test_1",{
+             bind:function(el,binding){
+            
+                 let that=el;
+                 let parentNode=el.parentNode;//note null
+                 console.log("In test_1 bind el : "+el);
+             },
+             inserted:function(el,binding){
+                let that=el;
+                let parentNode=el.parentNode;//note not null
+                console.log("In test_1 inserted el : "+el);
+            },
+            unbind:function(el,binding){
+                let that=el;
+                let parentNode=el.parentNode;
+                console.log("In test_1 unbind el : "+el);
+            },
+            update:function(el,binding){
+                let bindinfObj=binding;
+                let expression=binding.expression;
+                let innerText=el.innerText;
+                console.log("In test_1 update: innerText : "+innerText);//note unchanged
+            },
+            componentUpdated:function(el,binding){
+                let innerText=el.innerText;
+                console.log("In test_1 componentUpdate: innerText : "+innerText);//note changed
+            }
+        });
+        Vue.directive("test_2",{
+            update:function(el,binding){
+                let bindinfObj=binding;//using debugger to inspect binding object structure 
+                let expression=binding.expression;
+                let innerText=el.innerText;
+                console.log("In test_1 update: innerText : "+innerText);//note unchanged
+            }
+        });
+        Vue.directive("test_3",function(el,binding){//equal hook:bind and update
+            console.log("shortCut : bind and update")
+            let bindinfObj=binding;//using debugger to inspect binding object structure 
+            let expression=binding.expression;
+            let innerText=el.innerText;
+            console.log("In test_1 update: innerText : "+innerText);//note unchanged
+        });
+        vueVM[22]=new Vue({
+            el:"#vue_container_22",
+            data:{
+                show_1:true,
+                val_1:0,
+                msg_1:1,
+                msg_2:2
+             }
+        });
 }
