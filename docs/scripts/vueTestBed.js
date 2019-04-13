@@ -961,4 +961,30 @@ window.onload=function(){
                 msg_2:2
              }
         });
+        var myMixin_1={
+            data:{
+               
+                msg_3:"msg_in_mixin_3",//override by the same name in VM
+                msg_4:"msg_in_mixin_4"
+                },
+                methods:{
+                    method_1:function(){console.log("In method_1_mixin");},//override by the same name in VM
+                    method_2:function(){console.log("In method_2_mixin");}
+                },
+                created:()=>{console.log("In created_1_mixin");}//both will be called
+        }
+        vueVM[23]=new Vue({
+            el:"#vue_container_23",
+            mixins:[myMixin_1],
+            data:{
+             msg_1:"msg_in_VM_1",
+             msg_2:"msg_in_VM_2",
+             msg_3:"msg_in_VM_3"
+             },
+             methods:{
+                 method_1:function(){console.log("In method_1_VM");}
+             },
+             created:()=>{console.log("In created_1_VM");}
+                
+        });
 }

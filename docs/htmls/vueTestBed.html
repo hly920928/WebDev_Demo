@@ -581,6 +581,12 @@
                   <button @click="msg_2=msg_2+1">Add One</button>
                 </div>
        </div>
+       <h1>Vue : Mixin</h1>
+       <div   id="vue_container_23" class="vue_container vue_container_flex">
+         <div>
+           <div v-for="item in $data">{{item}}</div><!--reference root elements,  must have $ -->
+         </div>
+         </div>
 </body>
 <script src="../scripts/lib/vue.js"></script>
 <script src="../scripts/vueTestBed.js"></script>
