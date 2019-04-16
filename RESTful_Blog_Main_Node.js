@@ -1,9 +1,10 @@
-const PORT = 44564 ;
-//const HOST = "240e:e0:8a44:3b00:407f:17af:44d4:d21";
-const HOST = "127.0.0.1";
-//127.0.0.1
-//116.234.26.211
-//192.168.1.6
+if(process.env.COMPUTERNAME=="HLY2-PC"){
+  PORT=27002;HOST = "192.168.1.3";
+}else if (process.env.PWD==  '/root/AlC_NodeWebDev') {
+    PORT = 27002; HOST= "0.0.0.0";
+}else{
+  PORT = process.env.PORT;HOST = process.env.IP;
+}
 const express=require("express");
 const app=express();
 app.use(express.static("public"));
@@ -32,7 +33,7 @@ function campAddCallBack(err,blog){
   }
 var mongoose=require("mongoose");
 mongoose.set('useFindAndModify', false);//avoid warning
-var blogMongo=require("./blog_Mongoose.js");
+var blogMongo=require("./node_modules_my/blog_Mongoose_module.js");
 blogMongo.connectionBlogDB(mongoose); 
 var blogInfoMongo=blogMongo.getBlogModel(mongoose);
 
@@ -139,4 +140,4 @@ app.delete("/BlogDeleteOld/:id",function(req,res){
     });
 
 // heartbeat
-setInterval(mainloop,5000);
+/* setInterval(mainloop,5000); */

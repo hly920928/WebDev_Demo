@@ -961,11 +961,12 @@ window.onload=function(){
                 msg_2:2
              }
         });
+        //local mixin
         var myMixin_1={
-            data:{
+            data:{// note data is  a object
                
-                msg_3:"msg_in_mixin_3",//override by the same name in VM
-                msg_4:"msg_in_mixin_4"
+                msg_3:"msg_in_mixin_local_3",//override by the same name in VM
+                msg_4:"msg_in_mixin_local_4"
                 },
                 methods:{
                     method_1:function(){console.log("In method_1_mixin");},//override by the same name in VM
@@ -973,6 +974,15 @@ window.onload=function(){
                 },
                 created:()=>{console.log("In created_1_mixin");}//both will be called
         }
+        //global mixin,send data to any VM created after this mixin
+        // using with care
+        Vue.mixin({
+           data:function(){// note data is  a function
+               return {
+                   msg_5:"msg_in_mixin_global_5"
+               }
+           }
+        });
         vueVM[23]=new Vue({
             el:"#vue_container_23",
             mixins:[myMixin_1],
@@ -987,4 +997,6 @@ window.onload=function(){
              created:()=>{console.log("In created_1_VM");}
                 
         });
+        vueVM[23]=new Vue({
+            el:"#vue_container_24"});
 }
