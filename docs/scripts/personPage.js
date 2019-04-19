@@ -43,10 +43,26 @@ var webDemoList=[
 {
   title:"RESTful Blog",
     class_list:["gridCell","gridCell_Middle","opacityZero"],
-    comment:"简单的RESTful架构的综合展示，包括前端、后端及数据库",
+    comment:"简单的纯前端应用",
     tech:"前端：HTML,CSS,Javascript,Semantic UI 后端：Node.js,Express.js,MongoDB",
     target_url:baseUrl+":27002",
     img_url:".\\images\\BlogDemo.png"
+},
+{
+  title:"Todo List",
+    class_list:["gridCell","gridCell_Small","opacityZero"],
+    comment:"简单的RESTful架构的综合展示，包括前端、后端及数据库",
+    tech:"前端：HTML,CSS,Javascript",
+    target_url:baseUrl+":27777/htmls/TodoList.html",
+    img_url:".\\images\\TodoList.png"
+},
+{
+  title:"Photo Gallery",
+    class_list:["gridCell","gridCell_Small","opacityZero"],
+    comment:"主要展示Bootstrap应用",
+    tech:"HTML,CSS,Javascript,Bootstrap",
+    target_url:baseUrl+":27777/htmls/PhotoGallery.html",
+    img_url:".\\images\\PhotoGallery.png"
 }
 ];
 Vue.component("comp_web_demo",{
