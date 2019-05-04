@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import myFooter from "./components/footer"  /* relative to src folder */
+import myFooter from "./components/footer"  
 import myHeader from "./components/header"
 import myNav from "./components/nav"
 export default {
