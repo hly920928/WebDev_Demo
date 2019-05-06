@@ -3,6 +3,7 @@
     <myHeader></myHeader>
     <myNav></myNav>
     <router-view></router-view>
+    <router-view name="other_comp_1"></router-view>
     <myFooter></myFooter>
   </div>
 </template>
@@ -20,5 +21,7 @@ export default {
 </script>
 
 <style>
- 
+  #app>*{
+    border:3px black solid;
+  }
 </style>
