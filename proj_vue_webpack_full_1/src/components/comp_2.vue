@@ -1,7 +1,7 @@
 <template>
   <div  >
     <h1>{{ msg }}</h1>
-     <a href="#/comp_2/child_comp_1"><button>child_comp_1</button></a>
+    <button @click="jump_to_child_comp_1">child_comp_1</button>
       <router-view></router-view>
   </div>
 </template>
@@ -13,7 +13,12 @@ export default {
     return {
       msg: 'comp_2'
     }
-  } 
+  },
+  methods:{
+    jump_to_child_comp_1:function(){
+      window.location.href=window.location.href+"/child_comp_1";
+    }
+  }
 }
 </script>
 
