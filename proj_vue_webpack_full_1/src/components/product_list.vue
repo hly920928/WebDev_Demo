@@ -2,7 +2,7 @@
   <div  >
      <p>Originnal Price List</p>
    <ul>
-        <li v-for="item in product_list">
+        <li v-for="item in $store.state.a.product_list">
                <b>{{item.product}}</b> :   $<i>{{item.price}}</i>/Kg
                <button @click="changePrice(true,item)">Up Price</button>
     <button @click="changePrice(false,item)">Down Price</button>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {mapState} from "vuex"
+import {mapState,mapActions,mapMutations} from "vuex"
 export default{
   
   data:function(){
@@ -29,11 +29,19 @@ export default{
      ...mapState(["product_list"])
   },
   methods:{
+    /* ...mapMutations([
+      "mutate_all_price"
+      ]), */
+    /*     ...mapActions([
+      "a/action_each_price"
+      ]), */
     changeAllPrice(direction){
-      this.$store.commit("mutate_all_price",[direction,this.price_step]);
+      this.$store.commit("a/mutate_all_price",[direction,this.price_step]);  // namespaced
+   /*   this.mutate_all_price([direction,this.price_step]); */
     },
     changePrice(direction,item){
-       this.$store.dispatch("action_each_price",[direction,this.price_step,item]);
+       this.$store.dispatch("a/action_each_price",[direction,this.price_step,item]);
+     /*  this.action_each_price([direction,this.price_step,item]); */
     }
   }
 }

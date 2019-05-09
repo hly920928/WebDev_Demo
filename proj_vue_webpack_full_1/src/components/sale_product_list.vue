@@ -2,7 +2,7 @@
   <div  >
      <p>Sale Price List</p>
    <ul>
-        <li v-for="item in sale_product_list">
+        <li v-for="item in $store.getters['a/sale_product_list']">
                <b>{{item.product}}</b> :   $<i>{{item.price}}</i>/Kg
           </li>
 
@@ -22,7 +22,7 @@ export default{
  /*   sale_product_list:function(){
      return  this.$store.getters.sale_product_list
    } */
-   ...mapGetters(["sale_product_list"])  /* not ; */
+  /*  ...mapGetters(["sale_product_list"]) */  /* not ; */
   }
 }
 </script>

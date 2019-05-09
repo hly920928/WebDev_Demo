@@ -10,7 +10,8 @@ function changeEachPrice(state,argument){
     argument[2].price=val.toFixed(2);
   }
 vue.use(vuex);
-const store={
+const module_a={
+  namespaced:true,
     state:{
         product_list:[
             {product:"apple",price:"5"},
@@ -50,4 +51,8 @@ const store={
       }
     }
 }
-export default new vuex.Store(store);
+export default new vuex.Store({
+     modules:{
+      a:module_a
+     }
+});
