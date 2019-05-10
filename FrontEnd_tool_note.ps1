@@ -24,7 +24,14 @@ npm list -g --depth 0
 npm init -y
 babel ./src/es6_1.js -o ./dist/es5_1.js
 npm install css-loader style-loader --save-dev
-
+<#   vue-cli 2 #>
 vue init simple vue_project_1
 vue init webpack-simple proj_vue_webpack_simple_1
 vue init webpack proj_vue_webpack_full_1
+<#  vue-cli 3 #>
+npm i -g @vue-cli
+vue create vue_cli_3
+npm run serve
+vue add iview
+vue add axios
+vue ui
