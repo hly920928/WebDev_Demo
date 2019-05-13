@@ -1,4 +1,5 @@
-const baseUrl="http://192.168.1.3"
+/* const baseUrl="http://192.168.1.3" */
+const baseUrl="http://hly010abc.xyz"
 var webDemoList=[
     {
         title:"Camp Info",
@@ -6,7 +7,7 @@ var webDemoList=[
         comment:"综合展示，包括前端、后端及数据库",
         tech:"前端：HTML,CSS,Javascript,Bootstrap 后端：Node.js,Express.js,MongoDB (其他中小module太多，略去)",
         target_url:baseUrl+":27001",
-        img_url:".\\images\\mainImg_Camp_info.jpg"
+        img_url:"./images/mainImg_Camp_info.jpg"
     },
     {
       title:"Color Game",
@@ -43,7 +44,7 @@ var webDemoList=[
 {
   title:"RESTful Blog",
     class_list:["gridCell","gridCell_Middle","opacityZero"],
-    comment:"简单的纯前端应用",
+    comment:"简单的综合展示，包括前端、后端及数据库",
     tech:"前端：HTML,CSS,Javascript,Semantic UI 后端：Node.js,Express.js,MongoDB",
     target_url:baseUrl+":27002",
     img_url:".\\images\\BlogDemo.png"
@@ -51,8 +52,8 @@ var webDemoList=[
 {
   title:"Todo List",
     class_list:["gridCell","gridCell_Small","opacityZero"],
-    comment:"简单的RESTful架构的综合展示，包括前端、后端及数据库",
-    tech:"前端：HTML,CSS,Javascript",
+    comment:"简单的纯前端应用展示",
+    tech:"HTML,CSS,Javascript",
     target_url:baseUrl+":27777/htmls/TodoList.html",
     img_url:".\\images\\TodoList.png"
 },
@@ -93,7 +94,7 @@ window.onload=function(){
         },100);
          
        };
-       intervalID_1=setInterval(addDemoToList,1000);
+       intervalID_1=setInterval(addDemoToList,200);
      
        let sideBar= document.querySelector(".mySideBar");
   
