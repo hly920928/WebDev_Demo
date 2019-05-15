@@ -1,20 +1,28 @@
 .flexBox{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .container_1{
     background-color: rgb(209, 236, 228);
     padding: 10px;
 }
 .flexBox>div{
+
     margin: 1vh auto;
     width: 200px;
     height: 200px;
+    box-sizing: border-box;
     background-color:rgb(58, 58, 58); 
     color:snow;
-    padding: 3px;
-  
-    
+/*     padding: 3px; */
+   /*  line-height: 100%; */
+    text-align: center;
+ 
+  /*   padding: 75px 0px; */
+}
+.flexBox>div>div{
+    line-height: 200px; 
 }
 #div_2{
      
@@ -78,4 +86,84 @@ p:active{
 }
 .rotateThenScale{
     transform:  rotate(45deg) scale(1.2,0.8);
+}
+.no_transition:hover{
+   background-color: purple;
+}
+.transition_1{
+    transition: background-color 0.2s  0s linear;
+}
+.transition_1:hover{
+    background-color: purple;
+}
+.transition_2{
+    border-radius:0px;
+
+    transition: transform 0.8s ease-in-out   0.7s,
+                     border-radius  0.4s linear   0.3s,
+                     background-color 0.2s   linear 0s;
+}
+
+.transition_2:hover{
+    background-color: peru;
+    border-radius:50%;
+    transform:  rotate(1turn) scale(0.5);
+}
+.flexBox>.imgOutDiv{
+    position: relative;
+    width: 480px;
+    height: 270px;
+    background-color: bisque;
+    flex: 0 1 auto;
+     overflow: hidden; 
+}
+.flexBox>.imgOutDiv>img{
+    height:100%;
+}
+.flexBox>.imgOutDiv>.imgMask{
+  position: absolute;
+  top:0px;
+  width: 100%;
+  height: 100%;
+}
+.colorMask{
+    position: absolute;
+    top:0px;
+    width: 100%;
+    height: 100%;
+    z-index:50;
+    opacity: 0;
+    transition:  opacity 0.3s ease-in-out  0s;
+}
+.imgMask:hover>.colorMask{
+
+    opacity: 0.8;
+}
+.colorMask_1{
+    background-color: brown;
+}
+.colorMask_2{
+    background-color: turquoise;
+}
+.colorMask_3{
+    background-color: orange;
+}
+
+.imgMask>i{
+ 
+position: absolute;
+top:45%;
+left:45%;
+/* margin: 0 auto;
+line-height: 100%; */
+transform: scale(0.2);
+opacity: 0;
+z-index:60;
+transition:  opacity 0.3s ease-in-out  0.2s,
+                  transform 0.3s ease-in-out  0.2s;
+}
+
+.imgMask:hover>i{
+    transform: scale(1.5);
+    opacity:2;
 }
