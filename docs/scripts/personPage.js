@@ -64,6 +64,14 @@ var webDemoList=[
     tech:"HTML,CSS,Javascript,Bootstrap",
     target_url:baseUrl+":27777/htmls/PhotoGallery.html",
     img_url:".\\images\\PhotoGallery.png"
+},
+{
+  title:"CSS Animation Demo",
+    class_list:["gridCell","gridCell_Small","opacityZero"],
+    comment:"CSS动画",
+    tech:"HTML,CSS",
+    target_url:baseUrl+":27777/htmls/CSS_Animation_Demo_Page.html",
+    img_url:".\\images\\CSS_Animation_Demo_Page.png"
 }
 ];
 Vue.component("comp_web_demo",{
